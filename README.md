@@ -10,16 +10,16 @@ b4a deploy
 
 https://www.db4free.net/signup.php
 
-Nome do Banco: bancodadosapi
+Banco de dados: bancodadosapi
 
-Usuario: adminapi
+Nome de usuário: adminapi
 
 Senha: testeapi20
 
 Email: victormbg2000@gmail.com
 
-Banco de dados: bancodadosapi
-Nome de usuário: adminapi
-Email: victormbg2000@gmail.com
+Site: https://www.db4free.net/phpMyAdmin/
 
-entrar em https://www.db4free.net/phpMyAdmin/
+# Site do Back4App
+
+https://dashboard.back4app.com/apps
