@@ -1,4 +1,4 @@
-var connection = require('./database').databaseConnection;
+var connection = require('../database').databaseConnection;
 
 app.get("/", async (req, res) => {
     res.status(404).json({
@@ -7,8 +7,8 @@ app.get("/", async (req, res) => {
     });
 });
 
-// Consulta por nome
-app.get("/usuario/:nome", async (req, res) => {
+// Consulta Vaga por nome
+app.get("/vaga/:nome", async (req, res) => {
     let nome = req.params.nome;
     if (!nome) {
         res.status(400).json({
@@ -33,11 +33,12 @@ app.get("/usuario/:nome", async (req, res) => {
                 }
             }
         );
+        connection.end();
     }
 });
 
-// Consulta por id
-app.get("/usuario/:id", async (req, res) => {
+// Consulta Vaga por id
+app.get("/vaga/:id", async (req, res) => {
     let id = req.params.id;
     if (!id) {
         res.status(500).json({
@@ -62,11 +63,12 @@ app.get("/usuario/:id", async (req, res) => {
                 }
             }
         );
+        connection.end();
     }
 });
 
-// Criar Usuario
-app.post('/usuario', (req, res) => {
+// Criar Vaga
+app.post('/vaga', (req, res) => {
     // Pegando os campos do BODY JSON DE REQUEST
     var nome = req.body.nome;
     var sobrenome = req.body.sobrenome;
@@ -105,8 +107,56 @@ app.post('/usuario', (req, res) => {
     connection.end();
 });
 
-// Deletar por id
-app.delete("/usuario/:id", async (req, res) => {
+// Alterar Vaga por Id
+app.put('/vaga/:id', (req, res) => {
+    // Recuperando o ID
+    let id = req.params.id;
+    if (!id) {
+        res.status(500).json({
+            "status": "Erro",
+            "mensagem": "Erro Desconhecido",
+        });
+    } else {
+        // Pegando os campos do BODY JSON DE REQUEST
+        var nome = req.body.nome;
+        var sobrenome = req.body.sobrenome;
+        var pais = req.body.pais;
+        if (pais != "Brasil") {
+            res.status(422).json({
+                "status": "Erro",
+                "mensagem": "Apenas aceito Brasil como pais",
+            });
+        }
+        var municipio = req.body.municipio;
+        var estado = req.body.estado;
+        var idade = req.body.idade;
+        if (idade < 18) {
+            res.status(422).json({
+                "status": "Erro",
+                "mensagem": "Menor de Idade",
+            });
+            return;
+        }
+        // Alterando Usuario no BD
+        connection.query('UPDATE usuario SET nome = ?, sobrenome = ?, pais = ?, municipio = ?, estado = ?, idade = ? WHERE id = ?', [nome, sobrenome, pais, municipio, estado, idade, id], function (error, results, fields) {
+            if (error) {
+                res.status(500).json({
+                    "status": "Erro",
+                    "mensagem": error,
+                });
+            } else {
+                res.json({
+                    "status": "Sucesso",
+                    "mensagem": "Usuario alterado com sucesso",
+                });
+            }
+        });
+        connection.end();
+    }
+});
+
+// Deletar Vaga por id
+app.delete("/vaga/:id", async (req, res) => {
     let id = req.params.id;
     if (!id) {
         res.status(500).json({
@@ -126,6 +176,7 @@ app.delete("/usuario/:id", async (req, res) => {
                     "mensagem": "Usuario deletado com sucesso",
                 });
             }
-        })
+        });
+        connection.end();
     }
 });

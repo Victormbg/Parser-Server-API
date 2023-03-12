@@ -23,3 +23,7 @@ Site: https://www.db4free.net/phpMyAdmin/
 # Site do Back4App
 
 https://dashboard.back4app.com/apps
+
+# Links:
+
+https://andrew-lundy.medium.com/using-mysql-with-express-routes-f607ee9106d8

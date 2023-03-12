@@ -1,0 +1,597 @@
+{
+	"info": {
+		"_postman_id": "5ebc6d18-7c4f-4095-be3a-f08bf27e5393",
+		"name": "API_B4A",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Usuario",
+			"item": [
+				{
+					"name": "Alterar Usuario",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "X-Parse-Application-Id",
+								"value": "TOMhAasW768J3xUcEmvCePlX9AwAzmdNtWmPABW6"
+							},
+							{
+								"key": "X-Parse-REST-API-Key",
+								"value": "NlakQhJQoNrg46pNnVzm7fWqrQMkANf52rgoOIoF"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Victor\",\r\n    \"sobrenome\": \"Garcia\",\r\n    \"pais\": \"Brasil\",\r\n    \"municipio\": \"Rio de Janeiro\",\r\n    \"estado\": \"RJ\",\r\n    \"idade\": 18\r\n}"
+						},
+						"url": {
+							"raw": "https://parseapi.back4app.com/usuario/4",
+							"protocol": "https",
+							"host": [
+								"parseapi",
+								"back4app",
+								"com"
+							],
+							"path": [
+								"usuario",
+								"4"
+							],
+							"query": [
+								{
+									"key": "nome",
+									"value": "Victor",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Criar Usuario",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Parse-Application-Id",
+								"value": "TOMhAasW768J3xUcEmvCePlX9AwAzmdNtWmPABW6"
+							},
+							{
+								"key": "X-Parse-REST-API-Key",
+								"value": "NlakQhJQoNrg46pNnVzm7fWqrQMkANf52rgoOIoF"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Marcos\",\r\n    \"sobrenome\": \"Paulo\",\r\n    \"pais\": \"Brasil\",\r\n    \"municipio\": \"Rio de Janeiro\",\r\n    \"estado\": \"RJ\",\r\n    \"idade\": 25\r\n}"
+						},
+						"url": {
+							"raw": "https://parseapi.back4app.com/usuario",
+							"protocol": "https",
+							"host": [
+								"parseapi",
+								"back4app",
+								"com"
+							],
+							"path": [
+								"usuario"
+							],
+							"query": [
+								{
+									"key": "nome",
+									"value": "Victor",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar Usuario por Nome",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Parse-Application-Id",
+								"value": "TOMhAasW768J3xUcEmvCePlX9AwAzmdNtWmPABW6"
+							},
+							{
+								"key": "X-Parse-REST-API-Key",
+								"value": "NlakQhJQoNrg46pNnVzm7fWqrQMkANf52rgoOIoF"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "https://parseapi.back4app.com/usuario/Marcos",
+							"protocol": "https",
+							"host": [
+								"parseapi",
+								"back4app",
+								"com"
+							],
+							"path": [
+								"usuario",
+								"Marcos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar Usuario por Id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Parse-Application-Id",
+								"value": "TOMhAasW768J3xUcEmvCePlX9AwAzmdNtWmPABW6"
+							},
+							{
+								"key": "X-Parse-REST-API-Key",
+								"value": "NlakQhJQoNrg46pNnVzm7fWqrQMkANf52rgoOIoF"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "https://parseapi.back4app.com/usuario/3",
+							"protocol": "https",
+							"host": [
+								"parseapi",
+								"back4app",
+								"com"
+							],
+							"path": [
+								"usuario",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar Usuario por Id",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "X-Parse-Application-Id",
+								"value": "TOMhAasW768J3xUcEmvCePlX9AwAzmdNtWmPABW6"
+							},
+							{
+								"key": "X-Parse-REST-API-Key",
+								"value": "NlakQhJQoNrg46pNnVzm7fWqrQMkANf52rgoOIoF"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "https://parseapi.back4app.com/usuario/3",
+							"protocol": "https",
+							"host": [
+								"parseapi",
+								"back4app",
+								"com"
+							],
+							"path": [
+								"usuario",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Empresa",
+			"item": [
+				{
+					"name": "Alterar Empresa",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "X-Parse-Application-Id",
+								"value": "TOMhAasW768J3xUcEmvCePlX9AwAzmdNtWmPABW6"
+							},
+							{
+								"key": "X-Parse-REST-API-Key",
+								"value": "NlakQhJQoNrg46pNnVzm7fWqrQMkANf52rgoOIoF"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Victor\",\r\n    \"sobrenome\": \"Garcia\",\r\n    \"pais\": \"Brasil\",\r\n    \"municipio\": \"Rio de Janeiro\",\r\n    \"estado\": \"RJ\",\r\n    \"idade\": 18\r\n}"
+						},
+						"url": {
+							"raw": "https://parseapi.back4app.com/empresa/4",
+							"protocol": "https",
+							"host": [
+								"parseapi",
+								"back4app",
+								"com"
+							],
+							"path": [
+								"empresa",
+								"4"
+							],
+							"query": [
+								{
+									"key": "nome",
+									"value": "Victor",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Criar Empresa",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Parse-Application-Id",
+								"value": "TOMhAasW768J3xUcEmvCePlX9AwAzmdNtWmPABW6"
+							},
+							{
+								"key": "X-Parse-REST-API-Key",
+								"value": "NlakQhJQoNrg46pNnVzm7fWqrQMkANf52rgoOIoF"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Marcos\",\r\n    \"sobrenome\": \"Paulo\",\r\n    \"pais\": \"Brasil\",\r\n    \"municipio\": \"Rio de Janeiro\",\r\n    \"estado\": \"RJ\",\r\n    \"idade\": 25\r\n}"
+						},
+						"url": {
+							"raw": "https://parseapi.back4app.com/empresa",
+							"protocol": "https",
+							"host": [
+								"parseapi",
+								"back4app",
+								"com"
+							],
+							"path": [
+								"empresa"
+							],
+							"query": [
+								{
+									"key": "nome",
+									"value": "Victor",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar Empresa por Nome",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Parse-Application-Id",
+								"value": "TOMhAasW768J3xUcEmvCePlX9AwAzmdNtWmPABW6"
+							},
+							{
+								"key": "X-Parse-REST-API-Key",
+								"value": "NlakQhJQoNrg46pNnVzm7fWqrQMkANf52rgoOIoF"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "https://parseapi.back4app.com/empresa/Marcos",
+							"protocol": "https",
+							"host": [
+								"parseapi",
+								"back4app",
+								"com"
+							],
+							"path": [
+								"empresa",
+								"Marcos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar Empresa por Id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Parse-Application-Id",
+								"value": "TOMhAasW768J3xUcEmvCePlX9AwAzmdNtWmPABW6"
+							},
+							{
+								"key": "X-Parse-REST-API-Key",
+								"value": "NlakQhJQoNrg46pNnVzm7fWqrQMkANf52rgoOIoF"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "https://parseapi.back4app.com/empresa/3",
+							"protocol": "https",
+							"host": [
+								"parseapi",
+								"back4app",
+								"com"
+							],
+							"path": [
+								"empresa",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar Empresa por Id",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "X-Parse-Application-Id",
+								"value": "TOMhAasW768J3xUcEmvCePlX9AwAzmdNtWmPABW6"
+							},
+							{
+								"key": "X-Parse-REST-API-Key",
+								"value": "NlakQhJQoNrg46pNnVzm7fWqrQMkANf52rgoOIoF"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "https://parseapi.back4app.com/empresa/3",
+							"protocol": "https",
+							"host": [
+								"parseapi",
+								"back4app",
+								"com"
+							],
+							"path": [
+								"empresa",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Vaga",
+			"item": [
+				{
+					"name": "Alterar Vaga",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "X-Parse-Application-Id",
+								"value": "TOMhAasW768J3xUcEmvCePlX9AwAzmdNtWmPABW6"
+							},
+							{
+								"key": "X-Parse-REST-API-Key",
+								"value": "NlakQhJQoNrg46pNnVzm7fWqrQMkANf52rgoOIoF"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Victor\",\r\n    \"sobrenome\": \"Garcia\",\r\n    \"pais\": \"Brasil\",\r\n    \"municipio\": \"Rio de Janeiro\",\r\n    \"estado\": \"RJ\",\r\n    \"idade\": 18\r\n}"
+						},
+						"url": {
+							"raw": "https://parseapi.back4app.com/vaga/4",
+							"protocol": "https",
+							"host": [
+								"parseapi",
+								"back4app",
+								"com"
+							],
+							"path": [
+								"vaga",
+								"4"
+							],
+							"query": [
+								{
+									"key": "nome",
+									"value": "Victor",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Criar Vaga",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Parse-Application-Id",
+								"value": "TOMhAasW768J3xUcEmvCePlX9AwAzmdNtWmPABW6"
+							},
+							{
+								"key": "X-Parse-REST-API-Key",
+								"value": "NlakQhJQoNrg46pNnVzm7fWqrQMkANf52rgoOIoF"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Marcos\",\r\n    \"sobrenome\": \"Paulo\",\r\n    \"pais\": \"Brasil\",\r\n    \"municipio\": \"Rio de Janeiro\",\r\n    \"estado\": \"RJ\",\r\n    \"idade\": 25\r\n}"
+						},
+						"url": {
+							"raw": "https://parseapi.back4app.com/vaga",
+							"protocol": "https",
+							"host": [
+								"parseapi",
+								"back4app",
+								"com"
+							],
+							"path": [
+								"vaga"
+							],
+							"query": [
+								{
+									"key": "nome",
+									"value": "Victor",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar Vaga por Nome",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Parse-Application-Id",
+								"value": "TOMhAasW768J3xUcEmvCePlX9AwAzmdNtWmPABW6"
+							},
+							{
+								"key": "X-Parse-REST-API-Key",
+								"value": "NlakQhJQoNrg46pNnVzm7fWqrQMkANf52rgoOIoF"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "https://parseapi.back4app.com/vaga/Marcos",
+							"protocol": "https",
+							"host": [
+								"parseapi",
+								"back4app",
+								"com"
+							],
+							"path": [
+								"vaga",
+								"Marcos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar Vaga por Id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Parse-Application-Id",
+								"value": "TOMhAasW768J3xUcEmvCePlX9AwAzmdNtWmPABW6"
+							},
+							{
+								"key": "X-Parse-REST-API-Key",
+								"value": "NlakQhJQoNrg46pNnVzm7fWqrQMkANf52rgoOIoF"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "https://parseapi.back4app.com/vaga/3",
+							"protocol": "https",
+							"host": [
+								"parseapi",
+								"back4app",
+								"com"
+							],
+							"path": [
+								"vaga",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar Vaga por Id",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "X-Parse-Application-Id",
+								"value": "TOMhAasW768J3xUcEmvCePlX9AwAzmdNtWmPABW6"
+							},
+							{
+								"key": "X-Parse-REST-API-Key",
+								"value": "NlakQhJQoNrg46pNnVzm7fWqrQMkANf52rgoOIoF"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "https://parseapi.back4app.com/vaga/3",
+							"protocol": "https",
+							"host": [
+								"parseapi",
+								"back4app",
+								"com"
+							],
+							"path": [
+								"vaga",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

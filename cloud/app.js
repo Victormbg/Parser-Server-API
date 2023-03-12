@@ -29,5 +29,9 @@ function errorHandler(err, req, res, next) {
     res.status(500);
     res.render('error', { error: err });
 }
-
-require("./routes");
+// Importando o route para as chamadas de usuario
+require("./routes/usuario");
+// Importando o route para as chamadas de empresa
+require("./routes/empresa");
+// Importando o route para as chamadas de vaga
+require("./routes/vaga");
