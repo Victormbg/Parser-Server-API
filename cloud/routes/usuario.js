@@ -1,5 +1,19 @@
 var connection = require("../database").databaseConnection;
 
+// ERRO NESSE FUNCTION
+function GetJsonRequest(req) {
+  var mensagem = null;
+  const campos = null;
+  const { nome, sobrenome, idade } = req.body;
+  if (idade < 18) {
+    mensagem = "Usuário menor de idade";
+    return mensagem;
+  }
+  const { logradouro, municipio, estado, pais } = req.body.endereco;
+  campos = { nome, sobrenome, idade, logradouro, municipio, estado, pais };
+  return campos;
+}
+
 // Consulta Usuario por query
 /*
 app.get("/usuario", async (req, res) => {
@@ -115,48 +129,61 @@ app.post("/usuario", (req, res) => {
 
 // Alterar Usuario por Id
 app.put("/usuario/:id", (req, res) => {
-  // Recuperando o ID
-  let id = req.params.id;
-  if (!id) {
+  try {
+    // Recuperando o ID
+    let id = req.params.id;
+    if (!id) {
+      res.status(500).json({
+        status: "Erro",
+        mensagem: "Erro Desconhecido",
+      });
+    } else {
+      const { nome, sobrenome, idade } = req.body;
+      if (idade < 18) {
+        res.status(422).json({
+          status: "Erro",
+          mensagem: "Usuário menor de idade",
+        });
+        return;
+      }
+      const { logradouro, municipio, estado, pais } = req.body.endereco;
+      // Pegando os campos do BODY JSON DE REQUEST
+      /*
+      ERRO NESSE METODO
+      let resultado = GetJsonRequest(req);
+      if (typeof resultado === String) {
+        res.status(422).json({
+          status: "Erro",
+          mensagem: resultado,
+        });
+      } else {
+      */
+      // Alterando Usuario no BD
+      connection.query(
+        "UPDATE usuario SET nome = ?, sobrenome = ?, idade = ?, logradouro = ?, municipio = ?, estado = ?, pais = ? WHERE id = ?",
+        [nome, sobrenome, idade, logradouro, municipio, estado, pais, id],
+        function (error, results, fields) {
+          if (error) {
+            res.status(500).json({
+              status: "Erro",
+              mensagem: error,
+            });
+          } else {
+            res.json({
+              status: "Sucesso",
+              mensagem: "Usuario alterado com sucesso",
+            });
+          }
+        }
+      );
+      //connection.end();
+      //}
+    }
+  } catch (err) {
     res.status(500).json({
       status: "Erro",
-      mensagem: "Erro Desconhecido",
+      mensagem: err.message,
     });
-  } else {
-    // Pegando os campos do BODY JSON DE REQUEST
-    var nome = req.body.nome;
-    var sobrenome = req.body.sobrenome;
-    var idade = req.body.idade;
-    if (idade < 18) {
-      res.status(422).json({
-        status: "Erro",
-        mensagem: "Menor de Idade",
-      });
-      return;
-    }
-    var logradouro = req.body.endereco.logradouro;
-    var municipio = req.body.endereco.municipio;
-    var estado = req.body.endereco.estado;
-    var pais = req.body.endereco.pais;
-    // Alterando Usuario no BD
-    connection.query(
-      "UPDATE usuario SET nome = ?, sobrenome = ?, idade = ?, logradouro = ?, municipio = ?, estado = ?, pais = ? WHERE id = ?",
-      [nome, sobrenome, idade, logradouro, municipio, estado, pais, id],
-      function (error, results, fields) {
-        if (error) {
-          res.status(500).json({
-            status: "Erro",
-            mensagem: error,
-          });
-        } else {
-          res.json({
-            status: "Sucesso",
-            mensagem: "Usuario alterado com sucesso",
-          });
-        }
-      }
-    );
-    //connection.end();
   }
 });
 
