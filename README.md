@@ -1,3 +1,7 @@
+# Link do Download do CLI do B4A
+
+https://www.back4app.com/docs/local-development/parse-cli
+
 # Cria novo projeto ou pega um criado:
 
 b4a new

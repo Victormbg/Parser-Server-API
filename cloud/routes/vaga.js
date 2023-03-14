@@ -1,182 +1,157 @@
-var connection = require('../database').databaseConnection;
+var connection = require("../database").databaseConnection;
 
-app.get("/", async (req, res) => {
-    res.status(404).json({
-        "status": "Erro",
-        "mensagem": "Pagina não encontrada",
+// Consulta Empresa por nome
+/*
+app.get("/empresa/:nome", async (req, res) => {
+  let nome = req.params.nome;
+  if (!nome) {
+    res.status(400).json({
+      status: "Erro",
+      mensagem: "Nome mal formatado",
     });
+  } else {
+    connection.query(
+      "SELECT * FROM `empresa` WHERE `nome` = ?",
+      nome,
+      function (error, results, fields) {
+        if (error) {
+          res.status(422).json({
+            status: "Erro",
+            mensagem: "Empresa não encontrado",
+          });
+        } else {
+          res.json({
+            status: "Sucesso",
+            results,
+          });
+        }
+      }
+    );
+    connection.end();
+  }
 });
-
-// Consulta Vaga por nome
-app.get("/vaga/:nome", async (req, res) => {
-    let nome = req.params.nome;
-    if (!nome) {
-        res.status(400).json({
-            "status": "Erro",
-            "mensagem": "Usuario não encontrado",
-        });
-    } else {
-        connection.query(
-            'SELECT * FROM `usuario` WHERE `nome` = ?',
-            nome,
-            function (error, results, fields) {
-                if (error) {
-                    res.status(500).json({
-                        "status": "Erro",
-                        "mensagem": error,
-                    });
-                } else {
-                    res.json({
-                        "status": "Sucesso",
-                        results
-                    });
-                }
-            }
-        );
-        connection.end();
-    }
-});
-
-// Consulta Vaga por id
+*/
+// Consulta Empresa por id
 app.get("/vaga/:id", async (req, res) => {
-    let id = req.params.id;
-    if (!id) {
-        res.status(500).json({
-            "status": "Erro",
-            "mensagem": "Erro Desconhecido",
-        });
-    } else {
-        connection.query(
-            'SELECT * FROM `usuario` WHERE `id` = ?',
-            id,
-            function (error, results, fields) {
-                if (error) {
-                    res.status(500).json({
-                        "status": "Erro",
-                        "mensagem": error,
-                    });
-                } else {
-                    res.json({
-                        "status": "Sucesso",
-                        results
-                    });
-                }
-            }
-        );
-        connection.end();
-    }
+  let id = req.params.id;
+  if (!id) {
+    res.status(400).json({
+      status: "Erro",
+      mensagem: "Id mal formatado",
+    });
+  } else {
+    connection.query(
+      "SELECT * FROM `vaga` WHERE `id` = ?",
+      id,
+      function (error, results, fields) {
+        if (error) {
+          res.status(422).json({
+            status: "Erro",
+            mensagem: "Vaga não encontrado",
+          });
+        } else {
+          res.json({
+            status: "Sucesso",
+            results,
+          });
+        }
+      }
+    );
+    connection.end();
+  }
 });
 
 // Criar Vaga
-app.post('/vaga', (req, res) => {
-    // Pegando os campos do BODY JSON DE REQUEST
-    var nome = req.body.nome;
-    var sobrenome = req.body.sobrenome;
-    var pais = req.body.pais;
-    if (pais != "Brasil") {
-        res.status(422).json({
-            "status": "Erro",
-            "mensagem": "Apenas aceito Brasil como pais",
+app.post("/vaga", (req, res) => {
+  // Pegando os campos do BODY JSON DE REQUEST
+  var nomeVaga = req.body.nomeVaga;
+  var descricao = req.body.descricao;
+  var salario = req.body.salario;
+  // Salvar Vaga no BD
+  connection.query(
+    "INSERT INTO vaga SET ?",
+    {
+      nomeVaga: nomeVaga,
+      descricao: descricao,
+      salario: salario,
+    },
+    function (error, results, fields) {
+      if (error) {
+        res.status(500).json({
+          status: "Erro",
+          mensagem: error,
         });
-    }
-    var municipio = req.body.municipio;
-    var estado = req.body.estado;
-    var idade = req.body.idade;
-    if (idade < 18) {
-        res.status(422).json({
-            "status": "Erro",
-            "mensagem": "Menor de Idade",
+      } else {
+        res.json({
+          status: "Sucesso",
+          mensagem: "Vaga Criado com Sucesso",
         });
-        return;
+      }
     }
-
-    // Salvar Usuario no BD
-    connection.query('INSERT INTO usuario SET ?', { nome: nome, sobrenome: sobrenome, pais: pais, municipio: municipio, estado: estado, idade: idade }, function (error, results, fields) {
-        if (error) {
-            res.status(500).json({
-                "status": "Erro",
-                "mensagem": error,
-            });
-        } else {
-            res.json({
-                "status": "Sucesso",
-                "mensagem": "Usuario criado com sucesso",
-            });
-        }
-    });
-    connection.end();
+  );
+  connection.end();
 });
 
 // Alterar Vaga por Id
-app.put('/vaga/:id', (req, res) => {
-    // Recuperando o ID
-    let id = req.params.id;
-    if (!id) {
-        res.status(500).json({
-            "status": "Erro",
-            "mensagem": "Erro Desconhecido",
-        });
-    } else {
-        // Pegando os campos do BODY JSON DE REQUEST
-        var nome = req.body.nome;
-        var sobrenome = req.body.sobrenome;
-        var pais = req.body.pais;
-        if (pais != "Brasil") {
-            res.status(422).json({
-                "status": "Erro",
-                "mensagem": "Apenas aceito Brasil como pais",
-            });
+app.put("/vaga/:id", (req, res) => {
+  let id = req.params.id;
+  if (!id) {
+    res.status(400).json({
+      status: "Erro",
+      mensagem: "Id mal formatado",
+    });
+  } else {
+    // Pegando os campos do BODY JSON DE REQUEST
+    var nomeVaga = req.body.nomeVaga;
+    var descricao = req.body.descricao;
+    var salario = req.body.salario;
+    // Alterando Vaga no BD
+    connection.query(
+      "UPDATE vaga SET nomeVaga = ?, descricao = ?, salario = ? WHERE id = ?",
+      [nomeVaga, descricao, salario, id],
+      function (error, results, fields) {
+        if (error) {
+          res.status(500).json({
+            status: "Erro",
+            mensagem: error,
+          });
+        } else {
+          res.json({
+            status: "Sucesso",
+            mensagem: "Vaga Alterado com Sucesso",
+          });
         }
-        var municipio = req.body.municipio;
-        var estado = req.body.estado;
-        var idade = req.body.idade;
-        if (idade < 18) {
-            res.status(422).json({
-                "status": "Erro",
-                "mensagem": "Menor de Idade",
-            });
-            return;
-        }
-        // Alterando Usuario no BD
-        connection.query('UPDATE usuario SET nome = ?, sobrenome = ?, pais = ?, municipio = ?, estado = ?, idade = ? WHERE id = ?', [nome, sobrenome, pais, municipio, estado, idade, id], function (error, results, fields) {
-            if (error) {
-                res.status(500).json({
-                    "status": "Erro",
-                    "mensagem": error,
-                });
-            } else {
-                res.json({
-                    "status": "Sucesso",
-                    "mensagem": "Usuario alterado com sucesso",
-                });
-            }
-        });
-        connection.end();
-    }
+      }
+    );
+    connection.end();
+  }
 });
 
 // Deletar Vaga por id
 app.delete("/vaga/:id", async (req, res) => {
-    let id = req.params.id;
-    if (!id) {
-        res.status(500).json({
-            "status": "Erro",
-            "mensagem": "Erro Desconhecido",
-        });
-    } else {
-        connection.query('DELETE FROM usuario WHERE id = ' + id, function (error, results, fields) {
-            if (error) {
-                res.status(500).json({
-                    "status": "Erro",
-                    "mensagem": error,
-                });
-            } else {
-                res.json({
-                    "status": "Sucesso",
-                    "mensagem": "Usuario deletado com sucesso",
-                });
-            }
-        });
-        connection.end();
-    }
+  let id = req.params.id;
+  if (!id) {
+    res.status(400).json({
+      status: "Erro",
+      mensagem: "Id mal formatado",
+    });
+  } else {
+    connection.query(
+      "DELETE FROM vaga WHERE id = " + id,
+      function (error, results, fields) {
+        if (error) {
+          res.status(500).json({
+            status: "Erro",
+            mensagem: error,
+          });
+        } else {
+          res.json({
+            status: "Sucesso",
+            mensagem: "Vaga Deletada com Sucesso",
+          });
+        }
+      }
+    );
+    connection.end();
+  }
 });

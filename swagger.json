@@ -1,0 +1,1327 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "API vagasTecnologiainformacaobr",
+    "version": "v1"
+  },
+  "host": "parseapi.back4app.com",
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/usuario": {
+      "post": {
+        "tags": [
+          "Usuario"
+        ],
+        "description": "Criar Usuario",
+        "summary": "Criar Usuario",
+        "operationId": "post-usuario",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "RequestBody",
+            "schema": {
+              "$ref": "#/definitions/UsuarioRequest"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-Parse-Application-Id",
+            "description": "Application-Id do BackEnd",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "header",
+            "name": "X-Parse-REST-API-Key",
+            "description": "REST-API-Key do BackEnd",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "$ref": "#/definitions/SucessoResponse"
+            },
+            "examples": {
+              "application/json": {
+                "status": "Sucesso",
+                "mensagem": "Usuario Criado com Sucesso"
+              }
+            }
+          },
+          "400": {
+            "description": "Requisicao invalida.",
+            "schema": {
+              "$ref": "#/definitions/ErroResponse"
+            }
+          },
+          "401": {
+            "description": "Acesso negado devido a chave de assinatura invalida. Certifique-se de fornecer uma chave valida para uma assinatura ativa.",
+            "schema": {
+              "$ref": "#/definitions/ErroResponse"
+            }
+          },
+          "403": {
+            "description": "Permissao Negada.",
+            "schema": {
+              "$ref": "#/definitions/ErroResponse"
+            }
+          },
+          "404": {
+            "description": "Corretor nao encontrado.",
+            "schema": {
+              "$ref": "#/definitions/ErroResponse"
+            }
+          },
+          "500": {
+            "description": "Erro interno no servidor.",
+            "schema": {
+              "$ref": "#/definitions/ErroResponse"
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Usuario"
+        ],
+        "summary": "Consultar Usuario (NAO FINALIZADO)",
+        "description": "Consultar Dados do Usuario",
+        "operationId": "get-usuario",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "nome",
+            "description": "Nome Do Usuario",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "sobrenome",
+            "description": "Sobrenome Do Usuario",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "idade",
+            "description": "idade Do Usuario",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "pais",
+            "description": "Pais Do Usuario",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "header",
+            "name": "X-Parse-Application-Id",
+            "description": "Application-Id do BackEnd",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "header",
+            "name": "X-Parse-REST-API-Key",
+            "description": "REST-API-Key do BackEnd",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "$ref": "#/definitions/UsuarioResponse"
+            }
+          },
+          "400": {
+            "description": "Requisicao invalida.",
+            "schema": {
+              "$ref": "#/definitions/ErroResponse"
+            }
+          },
+          "401": {
+            "description": "Acesso negado devido a chave de assinatura invalida. Certifique-se de fornecer uma chave valida para uma assinatura ativa.",
+            "schema": {
+              "$ref": "#/definitions/ErroResponse"
+            }
+          },
+          "403": {
+            "description": "Permissao Negada.",
+            "schema": {
+              "$ref": "#/definitions/ErroResponse"
+            }
+          },
+          "404": {
+            "description": "Corretor nao encontrado.",
+            "schema": {
+              "$ref": "#/definitions/ErroResponse"
+            }
+          },
+          "500": {
+            "description": "Erro interno no servidor.",
+            "schema": {
+              "$ref": "#/definitions/ErroResponse"
+            }
+          }
+        }
+      }
+    },
+    "/usuario/{id}": {
+      "get": {
+        "tags": [
+          "Usuario"
+        ],
+        "summary": "Consultar Usuario por Id",
+        "description": "Consultar Dados do Usuario pelo ID",
+        "operationId": "get-usuario-id",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "Id Do Usuario",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "header",
+            "name": "X-Parse-Application-Id",
+            "description": "Application-Id do BackEnd",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "header",
+            "name": "X-Parse-REST-API-Key",
+            "description": "REST-API-Key do BackEnd",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "$ref": "#/definitions/UsuarioResponse"
+            }
+          },
+          "400": {
+            "description": "Requisicao invalida.",
+            "schema": {
+              "$ref": "#/definitions/ErroResponse"
+            }
+          },
+          "401": {
+            "description": "Acesso negado devido a chave de assinatura invalida. Certifique-se de fornecer uma chave valida para uma assinatura ativa.",
+            "schema": {
+              "$ref": "#/definitions/ErroResponse"
+            }
+          },
+          "403": {
+            "description": "Permissao Negada.",
+            "schema": {
+              "$ref": "#/definitions/ErroResponse"
+            }
+          },
+          "404": {
+            "description": "Corretor nao encontrado.",
+            "schema": {
+              "$ref": "#/definitions/ErroResponse"
+            }
+          },
+          "500": {
+            "description": "Erro interno no servidor.",
+            "schema": {
+              "$ref": "#/definitions/ErroResponse"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Usuario"
+        ],
+        "summary": "Alterar Usuario",
+        "description": "Alterar Dados do Usuario",
+        "operationId": "put-usuario",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "Id Do Usuario",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "RequestBody",
+            "schema": {
+              "$ref": "#/definitions/UsuarioRequest"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-Parse-Application-Id",
+            "description": "Application-Id do BackEnd",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "header",
+            "name": "X-Parse-REST-API-Key",
+            "description": "REST-API-Key do BackEnd",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "$ref": "#/definitions/SucessoResponse"
+            },
+            "examples": {
+              "application/json": {
+                "status": "Sucesso",
+                "mensagem": "Usuario Alterado com Sucesso"
+              }
+            }
+          },
+          "400": {
+            "description": "Requisicao invalida.",
+            "schema": {
+              "$ref": "#/definitions/ErroResponse"
+            }
+          },
+          "401": {
+            "description": "Acesso negado devido a chave de assinatura invalida. Certifique-se de fornecer uma chave valida para uma assinatura ativa.",
+            "schema": {
+              "$ref": "#/definitions/ErroResponse"
+            }
+          },
+          "403": {
+            "description": "Permissao Negada.",
+            "schema": {
+              "$ref": "#/definitions/ErroResponse"
+            }
+          },
+          "404": {
+            "description": "Corretor nao encontrado.",
+            "schema": {
+              "$ref": "#/definitions/ErroResponse"
+            }
+          },
+          "500": {
+            "description": "Erro interno no servidor.",
+            "schema": {
+              "$ref": "#/definitions/ErroResponse"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Usuario"
+        ],
+        "summary": "Deletar Usuario por Id",
+        "description": "Deletar o Usuario pelo ID",
+        "operationId": "delete-usuario-id",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "Id Do Usuario",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "header",
+            "name": "X-Parse-Application-Id",
+            "description": "Application-Id do BackEnd",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "header",
+            "name": "X-Parse-REST-API-Key",
+            "description": "REST-API-Key do BackEnd",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "$ref": "#/definitions/SucessoResponse"
+            },
+            "examples": {
+              "application/json": {
+                "status": "Sucesso",
+                "mensagem": "Usuario Deletado com Sucesso"
+              }
+            }
+          },
+          "400": {
+            "description": "Requisicao invalida.",
+            "schema": {
+              "$ref": "#/definitions/ErroResponse"
+            }
+          },
+          "401": {
+            "description": "Acesso negado devido a chave de assinatura invalida. Certifique-se de fornecer uma chave valida para uma assinatura ativa.",
+            "schema": {
+              "$ref": "#/definitions/ErroResponse"
+            }
+          },
+          "403": {
+            "description": "Permissao Negada.",
+            "schema": {
+              "$ref": "#/definitions/ErroResponse"
+            }
+          },
+          "404": {
+            "description": "Corretor nao encontrado.",
+            "schema": {
+              "$ref": "#/definitions/ErroResponse"
+            }
+          },
+          "500": {
+            "description": "Erro interno no servidor.",
+            "schema": {
+              "$ref": "#/definitions/ErroResponse"
+            }
+          }
+        }
+      }
+    },
+    "/empresa": {
+      "post": {
+        "tags": [
+          "Empresa"
+        ],
+        "description": "Criar Empresa",
+        "summary": "Criar Empresa",
+        "operationId": "post-empresa",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "RequestBody",
+            "schema": {
+              "$ref": "#/definitions/EmpresaRequest"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-Parse-Application-Id",
+            "description": "Application-Id do BackEnd",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "header",
+            "name": "X-Parse-REST-API-Key",
+            "description": "REST-API-Key do BackEnd",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "$ref": "#/definitions/SucessoResponse"
+            },
+            "examples": {
+              "application/json": {
+                "status": "Sucesso",
+                "mensagem": "Empresa Criada com Sucesso"
+              }
+            }
+          },
+          "400": {
+            "description": "Requisicao invalida.",
+            "schema": {
+              "$ref": "#/definitions/ErroResponse"
+            }
+          },
+          "401": {
+            "description": "Acesso negado devido a chave de assinatura invalida. Certifique-se de fornecer uma chave valida para uma assinatura ativa.",
+            "schema": {
+              "$ref": "#/definitions/ErroResponse"
+            }
+          },
+          "403": {
+            "description": "Permissao Negada.",
+            "schema": {
+              "$ref": "#/definitions/ErroResponse"
+            }
+          },
+          "404": {
+            "description": "Corretor nao encontrado.",
+            "schema": {
+              "$ref": "#/definitions/ErroResponse"
+            }
+          },
+          "500": {
+            "description": "Erro interno no servidor.",
+            "schema": {
+              "$ref": "#/definitions/ErroResponse"
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Empresa"
+        ],
+        "summary": "Consultar Empresa (NAO FINALIZADO)",
+        "description": "Consultar Dados da Empresa",
+        "operationId": "get-empresa",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "nome",
+            "description": "Nome Do Empresa",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "razaoSocial",
+            "description": "Razão Social Da Empresa",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "cnpj",
+            "description": "CNPJ Da Empresa",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "header",
+            "name": "X-Parse-Application-Id",
+            "description": "Application-Id do BackEnd",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "header",
+            "name": "X-Parse-REST-API-Key",
+            "description": "REST-API-Key do BackEnd",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "$ref": "#/definitions/EmpresaResponse"
+            }
+          },
+          "400": {
+            "description": "Requisicao invalida.",
+            "schema": {
+              "$ref": "#/definitions/ErroResponse"
+            }
+          },
+          "401": {
+            "description": "Acesso negado devido a chave de assinatura invalida. Certifique-se de fornecer uma chave valida para uma assinatura ativa.",
+            "schema": {
+              "$ref": "#/definitions/ErroResponse"
+            }
+          },
+          "403": {
+            "description": "Permissao Negada.",
+            "schema": {
+              "$ref": "#/definitions/ErroResponse"
+            }
+          },
+          "404": {
+            "description": "Corretor nao encontrado.",
+            "schema": {
+              "$ref": "#/definitions/ErroResponse"
+            }
+          },
+          "500": {
+            "description": "Erro interno no servidor.",
+            "schema": {
+              "$ref": "#/definitions/ErroResponse"
+            }
+          }
+        }
+      }
+    },
+    "/empresa/{id}": {
+      "get": {
+        "tags": [
+          "Empresa"
+        ],
+        "summary": "Consultar Empresa por Id",
+        "description": "Consultar Dados da Empresa pelo ID",
+        "operationId": "get-empresa-id",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "Id Da Empresa",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "header",
+            "name": "X-Parse-Application-Id",
+            "description": "Application-Id do BackEnd",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "header",
+            "name": "X-Parse-REST-API-Key",
+            "description": "REST-API-Key do BackEnd",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "$ref": "#/definitions/EmpresaResponse"
+            }
+          },
+          "400": {
+            "description": "Requisicao invalida.",
+            "schema": {
+              "$ref": "#/definitions/ErroResponse"
+            }
+          },
+          "401": {
+            "description": "Acesso negado devido a chave de assinatura invalida. Certifique-se de fornecer uma chave valida para uma assinatura ativa.",
+            "schema": {
+              "$ref": "#/definitions/ErroResponse"
+            }
+          },
+          "403": {
+            "description": "Permissao Negada.",
+            "schema": {
+              "$ref": "#/definitions/ErroResponse"
+            }
+          },
+          "404": {
+            "description": "Corretor nao encontrado.",
+            "schema": {
+              "$ref": "#/definitions/ErroResponse"
+            }
+          },
+          "500": {
+            "description": "Erro interno no servidor.",
+            "schema": {
+              "$ref": "#/definitions/ErroResponse"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Empresa"
+        ],
+        "summary": "Alterar Empresa",
+        "description": "Alterar Dados do Empresa",
+        "operationId": "put-empresa",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "Id Do Usuario",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "RequestBody",
+            "schema": {
+              "$ref": "#/definitions/EmpresaRequest"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-Parse-Application-Id",
+            "description": "Application-Id do BackEnd",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "header",
+            "name": "X-Parse-REST-API-Key",
+            "description": "REST-API-Key do BackEnd",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "$ref": "#/definitions/SucessoResponse"
+            },
+            "examples": {
+              "application/json": {
+                "status": "Sucesso",
+                "mensagem": "Empresa Alterada com Sucesso"
+              }
+            }
+          },
+          "400": {
+            "description": "Requisicao invalida.",
+            "schema": {
+              "$ref": "#/definitions/ErroResponse"
+            }
+          },
+          "401": {
+            "description": "Acesso negado devido a chave de assinatura invalida. Certifique-se de fornecer uma chave valida para uma assinatura ativa.",
+            "schema": {
+              "$ref": "#/definitions/ErroResponse"
+            }
+          },
+          "403": {
+            "description": "Permissao Negada.",
+            "schema": {
+              "$ref": "#/definitions/ErroResponse"
+            }
+          },
+          "404": {
+            "description": "Corretor nao encontrado.",
+            "schema": {
+              "$ref": "#/definitions/ErroResponse"
+            }
+          },
+          "500": {
+            "description": "Erro interno no servidor.",
+            "schema": {
+              "$ref": "#/definitions/ErroResponse"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Empresa"
+        ],
+        "summary": "Deletar Empresa por Id",
+        "description": "Deletar o Empresa pelo ID",
+        "operationId": "delete-empresa-id",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "Id Da Empresa",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "header",
+            "name": "X-Parse-Application-Id",
+            "description": "Application-Id do BackEnd",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "header",
+            "name": "X-Parse-REST-API-Key",
+            "description": "REST-API-Key do BackEnd",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "$ref": "#/definitions/SucessoResponse"
+            },
+            "examples": {
+              "application/json": {
+                "status": "Sucesso",
+                "mensagem": "Empresa Deletada com Sucesso"
+              }
+            }
+          },
+          "400": {
+            "description": "Requisicao invalida.",
+            "schema": {
+              "$ref": "#/definitions/ErroResponse"
+            }
+          },
+          "401": {
+            "description": "Acesso negado devido a chave de assinatura invalida. Certifique-se de fornecer uma chave valida para uma assinatura ativa.",
+            "schema": {
+              "$ref": "#/definitions/ErroResponse"
+            }
+          },
+          "403": {
+            "description": "Permissao Negada.",
+            "schema": {
+              "$ref": "#/definitions/ErroResponse"
+            }
+          },
+          "404": {
+            "description": "Corretor nao encontrado.",
+            "schema": {
+              "$ref": "#/definitions/ErroResponse"
+            }
+          },
+          "500": {
+            "description": "Erro interno no servidor.",
+            "schema": {
+              "$ref": "#/definitions/ErroResponse"
+            }
+          }
+        }
+      }
+    },
+    "/vaga": {
+      "post": {
+        "tags": [
+          "Vaga"
+        ],
+        "description": "Criar Vaga",
+        "summary": "Criar Vaga (NAO FINALIZADO)",
+        "operationId": "post-vaga",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "RequestBody",
+            "schema": {
+              "$ref": "#/definitions/UsuarioRequest"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "$ref": "#/definitions/SucessoResponse"
+            },
+            "examples": {
+              "application/json": {
+                "status": "Sucesso",
+                "mensagem": "Usuario Criado com Sucesso"
+              }
+            }
+          },
+          "400": {
+            "description": "Requisicao invalida.",
+            "schema": {
+              "$ref": "#/definitions/ErroResponse"
+            }
+          },
+          "401": {
+            "description": "Acesso negado devido a chave de assinatura invalida. Certifique-se de fornecer uma chave valida para uma assinatura ativa.",
+            "schema": {
+              "$ref": "#/definitions/ErroResponse"
+            }
+          },
+          "403": {
+            "description": "Permissao Negada.",
+            "schema": {
+              "$ref": "#/definitions/ErroResponse"
+            }
+          },
+          "404": {
+            "description": "Corretor nao encontrado.",
+            "schema": {
+              "$ref": "#/definitions/ErroResponse"
+            }
+          },
+          "500": {
+            "description": "Erro interno no servidor.",
+            "schema": {
+              "$ref": "#/definitions/ErroResponse"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Vaga"
+        ],
+        "summary": "Alterar Vaga (NAO FINALIZADO)",
+        "description": "Alterar Dados da Vaga",
+        "operationId": "put-vaga",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "RequestBody",
+            "schema": {
+              "$ref": "#/definitions/UsuarioRequest"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "$ref": "#/definitions/SucessoResponse"
+            },
+            "examples": {
+              "application/json": {
+                "status": "Sucesso",
+                "mensagem": "Usuario Alterado com Sucesso"
+              }
+            }
+          },
+          "400": {
+            "description": "Requisicao invalida.",
+            "schema": {
+              "$ref": "#/definitions/ErroResponse"
+            }
+          },
+          "401": {
+            "description": "Acesso negado devido a chave de assinatura invalida. Certifique-se de fornecer uma chave valida para uma assinatura ativa.",
+            "schema": {
+              "$ref": "#/definitions/ErroResponse"
+            }
+          },
+          "403": {
+            "description": "Permissao Negada.",
+            "schema": {
+              "$ref": "#/definitions/ErroResponse"
+            }
+          },
+          "404": {
+            "description": "Corretor nao encontrado.",
+            "schema": {
+              "$ref": "#/definitions/ErroResponse"
+            }
+          },
+          "500": {
+            "description": "Erro interno no servidor.",
+            "schema": {
+              "$ref": "#/definitions/ErroResponse"
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Vaga"
+        ],
+        "summary": "Consultar Vaga (NAO FINALIZADO)",
+        "description": "Consultar Dados da Vaga",
+        "operationId": "get-vaga",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "nome",
+            "description": "Nome Do Usuario",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "sobrenome",
+            "description": "Sobrenome Do Usuario",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "idade",
+            "description": "idade Do Usuario",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "pais",
+            "description": "Pais Do Usuario",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "$ref": "#/definitions/UsuarioResponse"
+            }
+          },
+          "400": {
+            "description": "Requisicao invalida.",
+            "schema": {
+              "$ref": "#/definitions/ErroResponse"
+            }
+          },
+          "401": {
+            "description": "Acesso negado devido a chave de assinatura invalida. Certifique-se de fornecer uma chave valida para uma assinatura ativa.",
+            "schema": {
+              "$ref": "#/definitions/ErroResponse"
+            }
+          },
+          "403": {
+            "description": "Permissao Negada.",
+            "schema": {
+              "$ref": "#/definitions/ErroResponse"
+            }
+          },
+          "404": {
+            "description": "Corretor nao encontrado.",
+            "schema": {
+              "$ref": "#/definitions/ErroResponse"
+            }
+          },
+          "500": {
+            "description": "Erro interno no servidor.",
+            "schema": {
+              "$ref": "#/definitions/ErroResponse"
+            }
+          }
+        }
+      }
+    },
+    "/vaga/{id}": {
+      "get": {
+        "tags": [
+          "Vaga"
+        ],
+        "summary": "Consultar Vaga por Id (NAO FINALIZADO)",
+        "description": "Consultar Dados da Vaga pelo ID",
+        "operationId": "get-vaga-id",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "Id Do Usuario",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "$ref": "#/definitions/UsuarioResponse"
+            }
+          },
+          "400": {
+            "description": "Requisicao invalida.",
+            "schema": {
+              "$ref": "#/definitions/ErroResponse"
+            }
+          },
+          "401": {
+            "description": "Acesso negado devido a chave de assinatura invalida. Certifique-se de fornecer uma chave valida para uma assinatura ativa.",
+            "schema": {
+              "$ref": "#/definitions/ErroResponse"
+            }
+          },
+          "403": {
+            "description": "Permissao Negada.",
+            "schema": {
+              "$ref": "#/definitions/ErroResponse"
+            }
+          },
+          "404": {
+            "description": "Corretor nao encontrado.",
+            "schema": {
+              "$ref": "#/definitions/ErroResponse"
+            }
+          },
+          "500": {
+            "description": "Erro interno no servidor.",
+            "schema": {
+              "$ref": "#/definitions/ErroResponse"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Vaga"
+        ],
+        "summary": "Deletar Vaga por Id (NAO FINALIZADO)",
+        "description": "Deletar a Vaga pelo ID",
+        "operationId": "delete-vaga-id",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "Id Do Usuario",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "$ref": "#/definitions/SucessoResponse"
+            },
+            "examples": {
+              "application/json": {
+                "status": "Sucesso",
+                "mensagem": "Usuario Deletado com Sucesso"
+              }
+            }
+          },
+          "400": {
+            "description": "Requisicao invalida.",
+            "schema": {
+              "$ref": "#/definitions/ErroResponse"
+            }
+          },
+          "401": {
+            "description": "Acesso negado devido a chave de assinatura invalida. Certifique-se de fornecer uma chave valida para uma assinatura ativa.",
+            "schema": {
+              "$ref": "#/definitions/ErroResponse"
+            }
+          },
+          "403": {
+            "description": "Permissao Negada.",
+            "schema": {
+              "$ref": "#/definitions/ErroResponse"
+            }
+          },
+          "404": {
+            "description": "Corretor nao encontrado.",
+            "schema": {
+              "$ref": "#/definitions/ErroResponse"
+            }
+          },
+          "500": {
+            "description": "Erro interno no servidor.",
+            "schema": {
+              "$ref": "#/definitions/ErroResponse"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "UsuarioRequest": {
+      "type": "object",
+      "properties": {
+        "nome": {
+          "type": "string"
+        },
+        "sobrenome": {
+          "type": "string"
+        },
+        "idade": {
+          "type": "integer"
+        },
+        "endereco": {
+          "type": "object",
+          "properties": {
+            "logradouro": {
+              "type": "string"
+            },
+            "municipio": {
+              "type": "string"
+            },
+            "estado": {
+              "type": "string"
+            },
+            "pais": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "UsuarioResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "results": {
+          "type": "array",
+          "items": {
+            "properties": {
+              "nome": {
+                "type": "string"
+              },
+              "sobrenome": {
+                "type": "string"
+              },
+              "idade": {
+                "type": "integer"
+              },
+              "endereco": {
+                "type": "object",
+                "properties": {
+                  "logradouro": {
+                    "type": "string"
+                  },
+                  "municipio": {
+                    "type": "string"
+                  },
+                  "estado": {
+                    "type": "string"
+                  },
+                  "pais": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "EmpresaRequest": {
+      "type": "object",
+      "properties": {
+        "nomeEmpresa": {
+          "type": "string"
+        },
+        "razaoSocial": {
+          "type": "string"
+        },
+        "cnpj": {
+          "type": "string"
+        },
+        "endereco": {
+          "type": "object",
+          "properties": {
+            "logradouro": {
+              "type": "string"
+            },
+            "municipio": {
+              "type": "string"
+            },
+            "estado": {
+              "type": "string"
+            },
+            "pais": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "EmpresaResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "results": {
+          "type": "array",
+          "items": {
+            "properties": {
+              "nomeEmpresa": {
+                "type": "string"
+              },
+              "razaoSocial": {
+                "type": "string"
+              },
+              "cnpj": {
+                "type": "string"
+              },
+              "endereco": {
+                "type": "object",
+                "properties": {
+                  "logradouro": {
+                    "type": "string"
+                  },
+                  "municipio": {
+                    "type": "string"
+                  },
+                  "estado": {
+                    "type": "string"
+                  },
+                  "pais": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "ErroResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "mensagem": {
+          "type": "string"
+        }
+      }
+    },
+    "SucessoResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "mensagem": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
