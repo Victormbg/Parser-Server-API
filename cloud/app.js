@@ -4,6 +4,20 @@ var methodOverride = require("method-override");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+// Importando o route para as chamadas de usuario
+require("./routes/usuario");
+// Importando o route para as chamadas de empresa
+require("./routes/empresa");
+// Importando o route para as chamadas de vaga
+require("./routes/vaga");
+// Função para erro 404
+app.use(function (req, res, next) {
+  res.status(404).json({
+    status: "Erro",
+    mensagem: "Página não Encontrada",
+  });
+});
+// Tratamentos de erros genericos
 app.use(methodOverride());
 app.use(logErrors);
 app.use(clientErrorHandler);
@@ -29,23 +43,3 @@ function errorHandler(err, req, res, next) {
   res.status(500);
   res.render("error", { error: err });
 }
-
-
-/*
-
-RESOLVER AINDA A QUESTAO DO 404
-
-app.use(function (req, res, next) {
-  res.status(404).json({
-    status: "Erro",
-    mensagem: "Pagina não encontrada",
-  });
-});
-*/
-
-// Importando o route para as chamadas de usuario
-require("./routes/usuario");
-// Importando o route para as chamadas de empresa
-require("./routes/empresa");
-// Importando o route para as chamadas de vaga
-require("./routes/vaga");

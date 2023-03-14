@@ -46,10 +46,17 @@ app.get("/usuario/:id", async (req, res) => {
             mensagem: error,
           });
         } else {
-          res.json({
-            status: "Sucesso",
-            results,
-          });
+          if (results.length === 0) {
+            res.status(422).json({
+              status: "Erro",
+              mensagem: "Usuário não encontrado",
+            });
+          } else {
+            res.json({
+              status: "Sucesso",
+              results,
+            });
+          }
         }
       }
     );
@@ -59,48 +66,51 @@ app.get("/usuario/:id", async (req, res) => {
 
 // Criar Usuario
 app.post("/usuario", (req, res) => {
-  // Pegando os campos do BODY JSON DE REQUEST
-  var nome = req.body.nome;
-  var sobrenome = req.body.sobrenome;
-  var idade = req.body.idade;
-  if (idade < 18) {
-    res.status(422).json({
-      status: "Erro",
-      mensagem: "Menor de Idade",
-    });
-    return;
-  }
-  var logradouro = req.body.endereco.logradouro;
-  var municipio = req.body.endereco.municipio;
-  var estado = req.body.endereco.estado;
-  var pais = req.body.endereco.pais;
-  // Salvar Usuario no BD
-  connection.query(
-    "INSERT INTO usuario SET ?",
-    {
-      nome: nome,
-      sobrenome: sobrenome,
-      idade: idade,
-      logradouro: logradouro,
-      municipio: municipio,
-      estado: estado,
-      pais: pais,
-    },
-    function (error, results, fields) {
-      if (error) {
-        res.status(500).json({
-          status: "Erro",
-          mensagem: error,
-        });
-      } else {
-        res.json({
-          status: "Sucesso",
-          mensagem: "Usuario Criado com Sucesso",
-        });
-      }
+  try {
+    // Pegando os campos do BODY JSON DE REQUEST
+    const { nome, sobrenome, idade } = req.body;
+    if (idade < 18) {
+      res.status(422).json({
+        status: "Erro",
+        mensagem: "Usuário menor de idade",
+      });
+      return;
     }
-  );
-  //connection.end();
+    const { logradouro, municipio, estado, pais } = req.body.endereco;
+    // Salvar Usuario no BD
+    connection.query(
+      "INSERT INTO usuario SET ?",
+      {
+        nome: nome,
+        sobrenome: sobrenome,
+        idade: idade,
+        logradouro: logradouro,
+        municipio: municipio,
+        estado: estado,
+        pais: pais,
+      },
+      function (error, results, fields) {
+        if (error) {
+          res.status(500).json({
+            status: "Erro",
+            mensagem: error,
+          });
+        } else {
+          res.status(201).json({
+            status: "Sucesso",
+            id: results.insertId,
+            mensagem: "Usuario Criado com Sucesso",
+          });
+        }
+      }
+    );
+    //connection.end();
+  } catch (error) {
+    res.status(500).json({
+      status: "Erro",
+      mensagem: error,
+    });
+  }
 });
 
 // Alterar Usuario por Id
