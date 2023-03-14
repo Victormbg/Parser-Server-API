@@ -53,7 +53,7 @@ app.get("/usuario/:id", async (req, res) => {
         }
       }
     );
-    connection.end();
+    //connection.end();
   }
 });
 
@@ -100,7 +100,7 @@ app.post("/usuario", (req, res) => {
       }
     }
   );
-  connection.end();
+  //connection.end();
 });
 
 // Alterar Usuario por Id
@@ -146,7 +146,7 @@ app.put("/usuario/:id", (req, res) => {
         }
       }
     );
-    connection.end();
+    //connection.end();
   }
 });
 
@@ -175,6 +175,6 @@ app.delete("/usuario/:id", async (req, res) => {
         }
       }
     );
-    connection.end();
+    //connection.end();
   }
 });

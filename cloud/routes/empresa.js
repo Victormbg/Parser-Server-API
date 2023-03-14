@@ -57,7 +57,7 @@ app.get("/empresa/:id", async (req, res) => {
         }
       }
     );
-    connection.end();
+    //connection.end();
   }
 });
 
@@ -98,7 +98,7 @@ app.post("/empresa", (req, res) => {
       }
     }
   );
-  connection.end();
+  //connection.end();
 });
 
 // Alterar Empresa por Id
@@ -136,7 +136,7 @@ app.put("/empresa/:id", (req, res) => {
         }
       }
     );
-    connection.end();
+    //connection.end();
   }
 });
 
@@ -165,6 +165,6 @@ app.delete("/empresa/:id", async (req, res) => {
         }
       }
     );
-    connection.end();
+    //connection.end();
   }
 });
