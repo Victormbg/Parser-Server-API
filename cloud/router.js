@@ -10,5 +10,11 @@ router.post(
   usuarioMiddleware.validateBody,
   usuarioController.CriarUsuario
 );
+router.delete("/usuario/:id", usuarioController.RemoverUsuario);
+router.put(
+  "/usuario/:id",
+  usuarioMiddleware.validateBody,
+  usuarioController.AtualizarUsuario
+);
 
 module.exports = router;
