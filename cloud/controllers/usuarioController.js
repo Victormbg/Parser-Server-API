@@ -14,7 +14,7 @@ const ConsultarUsuarioPorID = async (request, response) => {
 
   return response.status(200).json({
     status: "Sucesso",
-    usuario,
+    results: usuario,
   });
 };
 

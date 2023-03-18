@@ -44,7 +44,7 @@
           "application/json"
         ],
         "responses": {
-          "200": {
+          "201": {
             "description": "Ok",
             "schema": {
               "$ref": "#/definitions/SucessoResponse"
@@ -60,30 +60,36 @@
             "description": "Requisicao invalida.",
             "schema": {
               "$ref": "#/definitions/ErroResponse"
+            },
+            "examples": {
+              "application/json": {
+                "status": "Erro",
+                "mensagem": "Alguma mensagem de erro"
+              }
             }
           },
           "401": {
-            "description": "Acesso negado devido a chave de assinatura invalida. Certifique-se de fornecer uma chave valida para uma assinatura ativa.",
+            "description": "Acesso negado devido a X-Parse-REST-API-Key ou X-Parse-REST-API-Key invalida.",
             "schema": {
-              "$ref": "#/definitions/ErroResponse"
-            }
-          },
-          "403": {
-            "description": "Permissao Negada.",
-            "schema": {
-              "$ref": "#/definitions/ErroResponse"
+              "$ref": "#/definitions/Erro401Response"
             }
           },
           "404": {
-            "description": "Corretor nao encontrado.",
+            "description": "Pagina não encontrado.",
             "schema": {
-              "$ref": "#/definitions/ErroResponse"
+              "$ref": "#/definitions/Erro404Response"
             }
           },
           "500": {
             "description": "Erro interno no servidor.",
             "schema": {
               "$ref": "#/definitions/ErroResponse"
+            },
+            "examples": {
+              "application/json": {
+                "status": "Erro",
+                "mensagem": "Alguma mensagem de erro"
+              }
             }
           }
         }
@@ -153,30 +159,36 @@
             "description": "Requisicao invalida.",
             "schema": {
               "$ref": "#/definitions/ErroResponse"
+            },
+            "examples": {
+              "application/json": {
+                "status": "Erro",
+                "mensagem": "Alguma mensagem de erro"
+              }
             }
           },
           "401": {
-            "description": "Acesso negado devido a chave de assinatura invalida. Certifique-se de fornecer uma chave valida para uma assinatura ativa.",
+            "description": "Acesso negado devido a X-Parse-REST-API-Key ou X-Parse-REST-API-Key invalida.",
             "schema": {
-              "$ref": "#/definitions/ErroResponse"
-            }
-          },
-          "403": {
-            "description": "Permissao Negada.",
-            "schema": {
-              "$ref": "#/definitions/ErroResponse"
+              "$ref": "#/definitions/Erro401Response"
             }
           },
           "404": {
-            "description": "Corretor nao encontrado.",
+            "description": "Pagina não encontrado.",
             "schema": {
-              "$ref": "#/definitions/ErroResponse"
+              "$ref": "#/definitions/Erro404Response"
             }
           },
           "500": {
             "description": "Erro interno no servidor.",
             "schema": {
               "$ref": "#/definitions/ErroResponse"
+            },
+            "examples": {
+              "application/json": {
+                "status": "Erro",
+                "mensagem": "Alguma mensagem de erro"
+              }
             }
           }
         }
@@ -227,30 +239,36 @@
             "description": "Requisicao invalida.",
             "schema": {
               "$ref": "#/definitions/ErroResponse"
+            },
+            "examples": {
+              "application/json": {
+                "status": "Erro",
+                "mensagem": "Alguma mensagem de erro"
+              }
             }
           },
           "401": {
-            "description": "Acesso negado devido a chave de assinatura invalida. Certifique-se de fornecer uma chave valida para uma assinatura ativa.",
+            "description": "Acesso negado devido a X-Parse-REST-API-Key ou X-Parse-REST-API-Key invalida.",
             "schema": {
-              "$ref": "#/definitions/ErroResponse"
-            }
-          },
-          "403": {
-            "description": "Permissao Negada.",
-            "schema": {
-              "$ref": "#/definitions/ErroResponse"
+              "$ref": "#/definitions/Erro401Response"
             }
           },
           "404": {
-            "description": "Corretor nao encontrado.",
+            "description": "Pagina não encontrado.",
             "schema": {
-              "$ref": "#/definitions/ErroResponse"
+              "$ref": "#/definitions/Erro404Response"
             }
           },
           "500": {
             "description": "Erro interno no servidor.",
             "schema": {
               "$ref": "#/definitions/ErroResponse"
+            },
+            "examples": {
+              "application/json": {
+                "status": "Erro",
+                "mensagem": "Alguma mensagem de erro"
+              }
             }
           }
         }
@@ -312,30 +330,36 @@
             "description": "Requisicao invalida.",
             "schema": {
               "$ref": "#/definitions/ErroResponse"
+            },
+            "examples": {
+              "application/json": {
+                "status": "Erro",
+                "mensagem": "Alguma mensagem de erro"
+              }
             }
           },
           "401": {
-            "description": "Acesso negado devido a chave de assinatura invalida. Certifique-se de fornecer uma chave valida para uma assinatura ativa.",
+            "description": "Acesso negado devido a X-Parse-REST-API-Key ou X-Parse-REST-API-Key invalida.",
             "schema": {
-              "$ref": "#/definitions/ErroResponse"
-            }
-          },
-          "403": {
-            "description": "Permissao Negada.",
-            "schema": {
-              "$ref": "#/definitions/ErroResponse"
+              "$ref": "#/definitions/Erro401Response"
             }
           },
           "404": {
-            "description": "Corretor nao encontrado.",
+            "description": "Pagina não encontrado.",
             "schema": {
-              "$ref": "#/definitions/ErroResponse"
+              "$ref": "#/definitions/Erro404Response"
             }
           },
           "500": {
             "description": "Erro interno no servidor.",
             "schema": {
               "$ref": "#/definitions/ErroResponse"
+            },
+            "examples": {
+              "application/json": {
+                "status": "Erro",
+                "mensagem": "Alguma mensagem de erro"
+              }
             }
           }
         }
@@ -390,30 +414,36 @@
             "description": "Requisicao invalida.",
             "schema": {
               "$ref": "#/definitions/ErroResponse"
+            },
+            "examples": {
+              "application/json": {
+                "status": "Erro",
+                "mensagem": "Alguma mensagem de erro"
+              }
             }
           },
           "401": {
-            "description": "Acesso negado devido a chave de assinatura invalida. Certifique-se de fornecer uma chave valida para uma assinatura ativa.",
+            "description": "Acesso negado devido a X-Parse-REST-API-Key ou X-Parse-REST-API-Key invalida.",
             "schema": {
-              "$ref": "#/definitions/ErroResponse"
-            }
-          },
-          "403": {
-            "description": "Permissao Negada.",
-            "schema": {
-              "$ref": "#/definitions/ErroResponse"
+              "$ref": "#/definitions/Erro401Response"
             }
           },
           "404": {
-            "description": "Corretor nao encontrado.",
+            "description": "Pagina não encontrado.",
             "schema": {
-              "$ref": "#/definitions/ErroResponse"
+              "$ref": "#/definitions/Erro404Response"
             }
           },
           "500": {
             "description": "Erro interno no servidor.",
             "schema": {
               "$ref": "#/definitions/ErroResponse"
+            },
+            "examples": {
+              "application/json": {
+                "status": "Erro",
+                "mensagem": "Alguma mensagem de erro"
+              }
             }
           }
         }
@@ -470,30 +500,36 @@
             "description": "Requisicao invalida.",
             "schema": {
               "$ref": "#/definitions/ErroResponse"
+            },
+            "examples": {
+              "application/json": {
+                "status": "Erro",
+                "mensagem": "Alguma mensagem de erro"
+              }
             }
           },
           "401": {
-            "description": "Acesso negado devido a chave de assinatura invalida. Certifique-se de fornecer uma chave valida para uma assinatura ativa.",
+            "description": "Acesso negado devido a X-Parse-REST-API-Key ou X-Parse-REST-API-Key invalida.",
             "schema": {
-              "$ref": "#/definitions/ErroResponse"
-            }
-          },
-          "403": {
-            "description": "Permissao Negada.",
-            "schema": {
-              "$ref": "#/definitions/ErroResponse"
+              "$ref": "#/definitions/Erro401Response"
             }
           },
           "404": {
-            "description": "Corretor nao encontrado.",
+            "description": "Pagina não encontrado.",
             "schema": {
-              "$ref": "#/definitions/ErroResponse"
+              "$ref": "#/definitions/Erro404Response"
             }
           },
           "500": {
             "description": "Erro interno no servidor.",
             "schema": {
               "$ref": "#/definitions/ErroResponse"
+            },
+            "examples": {
+              "application/json": {
+                "status": "Erro",
+                "mensagem": "Alguma mensagem de erro"
+              }
             }
           }
         }
@@ -556,30 +592,36 @@
             "description": "Requisicao invalida.",
             "schema": {
               "$ref": "#/definitions/ErroResponse"
+            },
+            "examples": {
+              "application/json": {
+                "status": "Erro",
+                "mensagem": "Alguma mensagem de erro"
+              }
             }
           },
           "401": {
-            "description": "Acesso negado devido a chave de assinatura invalida. Certifique-se de fornecer uma chave valida para uma assinatura ativa.",
+            "description": "Acesso negado devido a X-Parse-REST-API-Key ou X-Parse-REST-API-Key invalida.",
             "schema": {
-              "$ref": "#/definitions/ErroResponse"
-            }
-          },
-          "403": {
-            "description": "Permissao Negada.",
-            "schema": {
-              "$ref": "#/definitions/ErroResponse"
+              "$ref": "#/definitions/Erro401Response"
             }
           },
           "404": {
-            "description": "Corretor nao encontrado.",
+            "description": "Pagina não encontrado.",
             "schema": {
-              "$ref": "#/definitions/ErroResponse"
+              "$ref": "#/definitions/Erro404Response"
             }
           },
           "500": {
             "description": "Erro interno no servidor.",
             "schema": {
               "$ref": "#/definitions/ErroResponse"
+            },
+            "examples": {
+              "application/json": {
+                "status": "Erro",
+                "mensagem": "Alguma mensagem de erro"
+              }
             }
           }
         }
@@ -630,30 +672,36 @@
             "description": "Requisicao invalida.",
             "schema": {
               "$ref": "#/definitions/ErroResponse"
+            },
+            "examples": {
+              "application/json": {
+                "status": "Erro",
+                "mensagem": "Alguma mensagem de erro"
+              }
             }
           },
           "401": {
-            "description": "Acesso negado devido a chave de assinatura invalida. Certifique-se de fornecer uma chave valida para uma assinatura ativa.",
+            "description": "Acesso negado devido a X-Parse-REST-API-Key ou X-Parse-REST-API-Key invalida.",
             "schema": {
-              "$ref": "#/definitions/ErroResponse"
-            }
-          },
-          "403": {
-            "description": "Permissao Negada.",
-            "schema": {
-              "$ref": "#/definitions/ErroResponse"
+              "$ref": "#/definitions/Erro401Response"
             }
           },
           "404": {
-            "description": "Corretor nao encontrado.",
+            "description": "Pagina não encontrado.",
             "schema": {
-              "$ref": "#/definitions/ErroResponse"
+              "$ref": "#/definitions/Erro404Response"
             }
           },
           "500": {
             "description": "Erro interno no servidor.",
             "schema": {
               "$ref": "#/definitions/ErroResponse"
+            },
+            "examples": {
+              "application/json": {
+                "status": "Erro",
+                "mensagem": "Alguma mensagem de erro"
+              }
             }
           }
         }
@@ -715,30 +763,36 @@
             "description": "Requisicao invalida.",
             "schema": {
               "$ref": "#/definitions/ErroResponse"
+            },
+            "examples": {
+              "application/json": {
+                "status": "Erro",
+                "mensagem": "Alguma mensagem de erro"
+              }
             }
           },
           "401": {
-            "description": "Acesso negado devido a chave de assinatura invalida. Certifique-se de fornecer uma chave valida para uma assinatura ativa.",
+            "description": "Acesso negado devido a X-Parse-REST-API-Key ou X-Parse-REST-API-Key invalida.",
             "schema": {
-              "$ref": "#/definitions/ErroResponse"
-            }
-          },
-          "403": {
-            "description": "Permissao Negada.",
-            "schema": {
-              "$ref": "#/definitions/ErroResponse"
+              "$ref": "#/definitions/Erro401Response"
             }
           },
           "404": {
-            "description": "Corretor nao encontrado.",
+            "description": "Pagina não encontrado.",
             "schema": {
-              "$ref": "#/definitions/ErroResponse"
+              "$ref": "#/definitions/Erro404Response"
             }
           },
           "500": {
             "description": "Erro interno no servidor.",
             "schema": {
               "$ref": "#/definitions/ErroResponse"
+            },
+            "examples": {
+              "application/json": {
+                "status": "Erro",
+                "mensagem": "Alguma mensagem de erro"
+              }
             }
           }
         }
@@ -793,30 +847,36 @@
             "description": "Requisicao invalida.",
             "schema": {
               "$ref": "#/definitions/ErroResponse"
+            },
+            "examples": {
+              "application/json": {
+                "status": "Erro",
+                "mensagem": "Alguma mensagem de erro"
+              }
             }
           },
           "401": {
-            "description": "Acesso negado devido a chave de assinatura invalida. Certifique-se de fornecer uma chave valida para uma assinatura ativa.",
+            "description": "Acesso negado devido a X-Parse-REST-API-Key ou X-Parse-REST-API-Key invalida.",
             "schema": {
-              "$ref": "#/definitions/ErroResponse"
-            }
-          },
-          "403": {
-            "description": "Permissao Negada.",
-            "schema": {
-              "$ref": "#/definitions/ErroResponse"
+              "$ref": "#/definitions/Erro401Response"
             }
           },
           "404": {
-            "description": "Corretor nao encontrado.",
+            "description": "Pagina não encontrado.",
             "schema": {
-              "$ref": "#/definitions/ErroResponse"
+              "$ref": "#/definitions/Erro404Response"
             }
           },
           "500": {
             "description": "Erro interno no servidor.",
             "schema": {
               "$ref": "#/definitions/ErroResponse"
+            },
+            "examples": {
+              "application/json": {
+                "status": "Erro",
+                "mensagem": "Alguma mensagem de erro"
+              }
             }
           }
         }
@@ -859,30 +919,36 @@
             "description": "Requisicao invalida.",
             "schema": {
               "$ref": "#/definitions/ErroResponse"
+            },
+            "examples": {
+              "application/json": {
+                "status": "Erro",
+                "mensagem": "Alguma mensagem de erro"
+              }
             }
           },
           "401": {
-            "description": "Acesso negado devido a chave de assinatura invalida. Certifique-se de fornecer uma chave valida para uma assinatura ativa.",
+            "description": "Acesso negado devido a X-Parse-REST-API-Key ou X-Parse-REST-API-Key invalida.",
             "schema": {
-              "$ref": "#/definitions/ErroResponse"
-            }
-          },
-          "403": {
-            "description": "Permissao Negada.",
-            "schema": {
-              "$ref": "#/definitions/ErroResponse"
+              "$ref": "#/definitions/Erro401Response"
             }
           },
           "404": {
-            "description": "Corretor nao encontrado.",
+            "description": "Pagina não encontrado.",
             "schema": {
-              "$ref": "#/definitions/ErroResponse"
+              "$ref": "#/definitions/Erro404Response"
             }
           },
           "500": {
             "description": "Erro interno no servidor.",
             "schema": {
               "$ref": "#/definitions/ErroResponse"
+            },
+            "examples": {
+              "application/json": {
+                "status": "Erro",
+                "mensagem": "Alguma mensagem de erro"
+              }
             }
           }
         }
@@ -923,30 +989,36 @@
             "description": "Requisicao invalida.",
             "schema": {
               "$ref": "#/definitions/ErroResponse"
+            },
+            "examples": {
+              "application/json": {
+                "status": "Erro",
+                "mensagem": "Alguma mensagem de erro"
+              }
             }
           },
           "401": {
-            "description": "Acesso negado devido a chave de assinatura invalida. Certifique-se de fornecer uma chave valida para uma assinatura ativa.",
+            "description": "Acesso negado devido a X-Parse-REST-API-Key ou X-Parse-REST-API-Key invalida.",
             "schema": {
-              "$ref": "#/definitions/ErroResponse"
-            }
-          },
-          "403": {
-            "description": "Permissao Negada.",
-            "schema": {
-              "$ref": "#/definitions/ErroResponse"
+              "$ref": "#/definitions/Erro401Response"
             }
           },
           "404": {
-            "description": "Corretor nao encontrado.",
+            "description": "Pagina não encontrado.",
             "schema": {
-              "$ref": "#/definitions/ErroResponse"
+              "$ref": "#/definitions/Erro404Response"
             }
           },
           "500": {
             "description": "Erro interno no servidor.",
             "schema": {
               "$ref": "#/definitions/ErroResponse"
+            },
+            "examples": {
+              "application/json": {
+                "status": "Erro",
+                "mensagem": "Alguma mensagem de erro"
+              }
             }
           }
         }
@@ -1002,30 +1074,36 @@
             "description": "Requisicao invalida.",
             "schema": {
               "$ref": "#/definitions/ErroResponse"
+            },
+            "examples": {
+              "application/json": {
+                "status": "Erro",
+                "mensagem": "Alguma mensagem de erro"
+              }
             }
           },
           "401": {
-            "description": "Acesso negado devido a chave de assinatura invalida. Certifique-se de fornecer uma chave valida para uma assinatura ativa.",
+            "description": "Acesso negado devido a X-Parse-REST-API-Key ou X-Parse-REST-API-Key invalida.",
             "schema": {
-              "$ref": "#/definitions/ErroResponse"
-            }
-          },
-          "403": {
-            "description": "Permissao Negada.",
-            "schema": {
-              "$ref": "#/definitions/ErroResponse"
+              "$ref": "#/definitions/Erro401Response"
             }
           },
           "404": {
-            "description": "Corretor nao encontrado.",
+            "description": "Pagina não encontrado.",
             "schema": {
-              "$ref": "#/definitions/ErroResponse"
+              "$ref": "#/definitions/Erro404Response"
             }
           },
           "500": {
             "description": "Erro interno no servidor.",
             "schema": {
               "$ref": "#/definitions/ErroResponse"
+            },
+            "examples": {
+              "application/json": {
+                "status": "Erro",
+                "mensagem": "Alguma mensagem de erro"
+              }
             }
           }
         }
@@ -1062,30 +1140,36 @@
             "description": "Requisicao invalida.",
             "schema": {
               "$ref": "#/definitions/ErroResponse"
+            },
+            "examples": {
+              "application/json": {
+                "status": "Erro",
+                "mensagem": "Alguma mensagem de erro"
+              }
             }
           },
           "401": {
-            "description": "Acesso negado devido a chave de assinatura invalida. Certifique-se de fornecer uma chave valida para uma assinatura ativa.",
+            "description": "Acesso negado devido a X-Parse-REST-API-Key ou X-Parse-REST-API-Key invalida.",
             "schema": {
-              "$ref": "#/definitions/ErroResponse"
-            }
-          },
-          "403": {
-            "description": "Permissao Negada.",
-            "schema": {
-              "$ref": "#/definitions/ErroResponse"
+              "$ref": "#/definitions/Erro401Response"
             }
           },
           "404": {
-            "description": "Corretor nao encontrado.",
+            "description": "Pagina não encontrado.",
             "schema": {
-              "$ref": "#/definitions/ErroResponse"
+              "$ref": "#/definitions/Erro404Response"
             }
           },
           "500": {
             "description": "Erro interno no servidor.",
             "schema": {
               "$ref": "#/definitions/ErroResponse"
+            },
+            "examples": {
+              "application/json": {
+                "status": "Erro",
+                "mensagem": "Alguma mensagem de erro"
+              }
             }
           }
         }
@@ -1126,30 +1210,36 @@
             "description": "Requisicao invalida.",
             "schema": {
               "$ref": "#/definitions/ErroResponse"
+            },
+            "examples": {
+              "application/json": {
+                "status": "Erro",
+                "mensagem": "Alguma mensagem de erro"
+              }
             }
           },
           "401": {
-            "description": "Acesso negado devido a chave de assinatura invalida. Certifique-se de fornecer uma chave valida para uma assinatura ativa.",
+            "description": "Acesso negado devido a X-Parse-REST-API-Key ou X-Parse-REST-API-Key invalida.",
             "schema": {
-              "$ref": "#/definitions/ErroResponse"
-            }
-          },
-          "403": {
-            "description": "Permissao Negada.",
-            "schema": {
-              "$ref": "#/definitions/ErroResponse"
+              "$ref": "#/definitions/Erro401Response"
             }
           },
           "404": {
-            "description": "Corretor nao encontrado.",
+            "description": "Pagina não encontrado.",
             "schema": {
-              "$ref": "#/definitions/ErroResponse"
+              "$ref": "#/definitions/Erro404Response"
             }
           },
           "500": {
             "description": "Erro interno no servidor.",
             "schema": {
               "$ref": "#/definitions/ErroResponse"
+            },
+            "examples": {
+              "application/json": {
+                "status": "Erro",
+                "mensagem": "Alguma mensagem de erro"
+              }
             }
           }
         }
@@ -1159,30 +1249,49 @@
   "definitions": {
     "UsuarioRequest": {
       "type": "object",
+      "required": [
+        "nome",
+        "sobrenome",
+        "idade",
+        "endereco"
+      ],
       "properties": {
         "nome": {
-          "type": "string"
+          "type": "string",
+          "description": "Nome do Usuario"
         },
         "sobrenome": {
-          "type": "string"
+          "type": "string",
+          "description": "Sobrenome do Usuario"
         },
         "idade": {
-          "type": "integer"
+          "type": "integer",
+          "description": "Idade do Usuario"
         },
         "endereco": {
           "type": "object",
+          "required": [
+            "logradouro",
+            "municipio",
+            "estado",
+            "pais"
+          ],
           "properties": {
             "logradouro": {
-              "type": "string"
+              "type": "string",
+              "description": "Logradouro do Usuario (rua, avenida, ...)"
             },
             "municipio": {
-              "type": "string"
+              "type": "string",
+              "description": "Municipio do Usuario"
             },
             "estado": {
-              "type": "string"
+              "type": "string",
+              "description": "Estado do Usuario"
             },
             "pais": {
-              "type": "string"
+              "type": "string",
+              "description": "Pais do Usuario"
             }
           }
         }
@@ -1192,37 +1301,44 @@
       "type": "object",
       "properties": {
         "status": {
-          "type": "string"
+          "type": "string",
+          "description": "Campo para dizer o status for sucesso"
         },
         "results": {
           "type": "array",
           "items": {
             "properties": {
+              "id": {
+                "type": "integer",
+                "description": "ID do Usuario no Banco de Dados"
+              },
               "nome": {
-                "type": "string"
+                "type": "string",
+                "description": "Nome do Usuario"
               },
               "sobrenome": {
-                "type": "string"
+                "type": "string",
+                "description": "Sobrenome do Usuario"
+              },
+              "pais": {
+                "type": "string",
+                "description": "Pais do Usuario"
+              },
+              "municipio": {
+                "type": "string",
+                "description": "Municipio do Usuario"
+              },
+              "estado": {
+                "type": "string",
+                "description": "Estado do Usuario"
               },
               "idade": {
-                "type": "integer"
+                "type": "integer",
+                "description": "Idade do Usuario"
               },
-              "endereco": {
-                "type": "object",
-                "properties": {
-                  "logradouro": {
-                    "type": "string"
-                  },
-                  "municipio": {
-                    "type": "string"
-                  },
-                  "estado": {
-                    "type": "string"
-                  },
-                  "pais": {
-                    "type": "string"
-                  }
-                }
+              "logradouro": {
+                "type": "string",
+                "description": "Logradouro do Usuario (rua, avenida, ...)"
               }
             }
           }
@@ -1321,6 +1437,32 @@
         "mensagem": {
           "type": "string"
         }
+      }
+    },
+    "Erro401Response": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "string"
+        }
+      },
+      "example": {
+        "error": "unauthorized"
+      }
+    },
+    "Erro404Response": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "mensagem": {
+          "type": "string"
+        }
+      },
+      "example": {
+        "status": "Erro",
+        "mensagem": "Página não Encontrada"
       }
     }
   }
