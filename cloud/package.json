@@ -1,7 +1,8 @@
 {
     "dependencies": {
+        "express": "*",
         "body-parser": "*",
         "method-override": "*",
-        "mysql": "*"
+        "mysql2": "*"
     }
 }
