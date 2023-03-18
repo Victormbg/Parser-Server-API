@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "5ebc6d18-7c4f-4095-be3a-f08bf27e5393",
+		"_postman_id": "d7a31381-f904-4664-85b5-a8b248c91c96",
 		"name": "API_B4A",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -8,51 +8,6 @@
 		{
 			"name": "Usuario",
 			"item": [
-				{
-					"name": "Alterar Usuario",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "X-Parse-Application-Id",
-								"value": "TOMhAasW768J3xUcEmvCePlX9AwAzmdNtWmPABW6"
-							},
-							{
-								"key": "X-Parse-REST-API-Key",
-								"value": "NlakQhJQoNrg46pNnVzm7fWqrQMkANf52rgoOIoF"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"nome\": \"Victor\",\r\n    \"sobrenome\": \"Garcia\",\r\n    \"pais\": \"Brasil\",\r\n    \"municipio\": \"Rio de Janeiro\",\r\n    \"estado\": \"RJ\",\r\n    \"idade\": 18\r\n}"
-						},
-						"url": {
-							"raw": "https://parseapi.back4app.com/usuario/4",
-							"protocol": "https",
-							"host": [
-								"parseapi",
-								"back4app",
-								"com"
-							],
-							"path": [
-								"usuario",
-								"4"
-							],
-							"query": [
-								{
-									"key": "nome",
-									"value": "Victor",
-									"disabled": true
-								}
-							]
-						}
-					},
-					"response": []
-				},
 				{
 					"name": "Criar Usuario",
 					"request": {
@@ -73,7 +28,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nome\": \"Marcos\",\r\n    \"sobrenome\": \"Paulo\",\r\n    \"pais\": \"Brasil\",\r\n    \"municipio\": \"Rio de Janeiro\",\r\n    \"estado\": \"RJ\",\r\n    \"idade\": 25\r\n}"
+							"raw": "{\r\n    \"nome\": \"Victor\",\r\n    \"sobrenome\": \"Teste NOVA API 6\",\r\n    \"idade\": 22,\r\n    \"endereco\": {\r\n        \"logradouro\": \"Rua Do Rio\",\r\n        \"municipio\": \"Rio de Janeiro\",\r\n        \"estado\": \"RJ\",\r\n        \"pais\": \"Brasil\"\r\n    }\r\n}"
 						},
 						"url": {
 							"raw": "https://parseapi.back4app.com/usuario",
@@ -85,20 +40,51 @@
 							],
 							"path": [
 								"usuario"
-							],
-							"query": [
-								{
-									"key": "nome",
-									"value": "Victor",
-									"disabled": true
-								}
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Consultar Usuario por Nome",
+					"name": "Alterar Usuario",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "X-Parse-Application-Id",
+								"value": "TOMhAasW768J3xUcEmvCePlX9AwAzmdNtWmPABW6"
+							},
+							{
+								"key": "X-Parse-REST-API-Key",
+								"value": "NlakQhJQoNrg46pNnVzm7fWqrQMkANf52rgoOIoF"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Victor\",\r\n    \"sobrenome\": \"Garcia 2\",\r\n    \"idade\": 23,\r\n    \"endereco\": {\r\n        \"logradouro\": \"Rua Do Rio\",\r\n        \"municipio\": \"Rio de Janeiro\",\r\n        \"estado\": \"RJ\",\r\n        \"pais\": \"Brasil\"\r\n    }\r\n}"
+						},
+						"url": {
+							"raw": "https://parseapi.back4app.com/usuario/24",
+							"protocol": "https",
+							"host": [
+								"parseapi",
+								"back4app",
+								"com"
+							],
+							"path": [
+								"usuario",
+								"24"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar Usuario - RUIM",
 					"request": {
 						"method": "GET",
 						"header": [
@@ -116,7 +102,7 @@
 							}
 						],
 						"url": {
-							"raw": "https://parseapi.back4app.com/usuario/Marcos",
+							"raw": "https://parseapi.back4app.com/usuario",
 							"protocol": "https",
 							"host": [
 								"parseapi",
@@ -124,8 +110,7 @@
 								"com"
 							],
 							"path": [
-								"usuario",
-								"Marcos"
+								"usuario"
 							]
 						}
 					},
@@ -146,11 +131,12 @@
 							},
 							{
 								"key": "Content-Type",
-								"value": "application/json"
+								"value": "application/json",
+								"disabled": true
 							}
 						],
 						"url": {
-							"raw": "https://parseapi.back4app.com/usuario/3",
+							"raw": "https://parseapi.back4app.com/usuario/24",
 							"protocol": "https",
 							"host": [
 								"parseapi",
@@ -159,7 +145,7 @@
 							],
 							"path": [
 								"usuario",
-								"3"
+								"24"
 							]
 						}
 					},
@@ -184,7 +170,7 @@
 							}
 						],
 						"url": {
-							"raw": "https://parseapi.back4app.com/usuario/3",
+							"raw": "https://parseapi.back4app.com/usuario/23",
 							"protocol": "https",
 							"host": [
 								"parseapi",
@@ -193,7 +179,7 @@
 							],
 							"path": [
 								"usuario",
-								"3"
+								"23"
 							]
 						}
 					},
@@ -204,51 +190,6 @@
 		{
 			"name": "Empresa",
 			"item": [
-				{
-					"name": "Alterar Empresa",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "X-Parse-Application-Id",
-								"value": "TOMhAasW768J3xUcEmvCePlX9AwAzmdNtWmPABW6"
-							},
-							{
-								"key": "X-Parse-REST-API-Key",
-								"value": "NlakQhJQoNrg46pNnVzm7fWqrQMkANf52rgoOIoF"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"nome\": \"Victor\",\r\n    \"sobrenome\": \"Garcia\",\r\n    \"pais\": \"Brasil\",\r\n    \"municipio\": \"Rio de Janeiro\",\r\n    \"estado\": \"RJ\",\r\n    \"idade\": 18\r\n}"
-						},
-						"url": {
-							"raw": "https://parseapi.back4app.com/empresa/4",
-							"protocol": "https",
-							"host": [
-								"parseapi",
-								"back4app",
-								"com"
-							],
-							"path": [
-								"empresa",
-								"4"
-							],
-							"query": [
-								{
-									"key": "nome",
-									"value": "Victor",
-									"disabled": true
-								}
-							]
-						}
-					},
-					"response": []
-				},
 				{
 					"name": "Criar Empresa",
 					"request": {
@@ -269,7 +210,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nome\": \"Marcos\",\r\n    \"sobrenome\": \"Paulo\",\r\n    \"pais\": \"Brasil\",\r\n    \"municipio\": \"Rio de Janeiro\",\r\n    \"estado\": \"RJ\",\r\n    \"idade\": 25\r\n}"
+							"raw": "{\r\n    \"NomeEmpresa\": \"Lojas Americanas\",\r\n    \"RazaoSocial\": \"LOJAS AMERICANAS S.A.\",\r\n    \"cnpj\": \"33.014.556/0001-96\",\r\n    \"endereco\": {\r\n        \"logradouro\": \"Rua Do Rio\",\r\n        \"municipio\": \"Rio de Janeiro\",\r\n        \"estado\": \"RJ\",\r\n        \"pais\": \"Brasil\"\r\n    }\r\n}"
 						},
 						"url": {
 							"raw": "https://parseapi.back4app.com/empresa",
@@ -294,7 +235,52 @@
 					"response": []
 				},
 				{
-					"name": "Consultar Empresa por Nome",
+					"name": "Alterar Empresa",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "X-Parse-Application-Id",
+								"value": "TOMhAasW768J3xUcEmvCePlX9AwAzmdNtWmPABW6"
+							},
+							{
+								"key": "X-Parse-REST-API-Key",
+								"value": "NlakQhJQoNrg46pNnVzm7fWqrQMkANf52rgoOIoF"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"NomeEmpresa\": \"Lojas Americanas\",\r\n    \"RazaoSocial\": \"LOJAS AMERICANAS S.A.\",\r\n    \"cnpj\": \"33.014.556/0001-96\",\r\n    \"endereco\": {\r\n        \"logradouro\": \"Rua Do Rio\",\r\n        \"municipio\": \"São Paulo\",\r\n        \"estado\": \"SP\",\r\n        \"pais\": \"Brasil\"\r\n    }\r\n}"
+						},
+						"url": {
+							"raw": "https://parseapi.back4app.com/empresa/2",
+							"protocol": "https",
+							"host": [
+								"parseapi",
+								"back4app",
+								"com"
+							],
+							"path": [
+								"empresa",
+								"2"
+							],
+							"query": [
+								{
+									"key": "nome",
+									"value": "Victor",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar Empresa - RUIM",
 					"request": {
 						"method": "GET",
 						"header": [
@@ -346,7 +332,7 @@
 							}
 						],
 						"url": {
-							"raw": "https://parseapi.back4app.com/empresa/3",
+							"raw": "https://parseapi.back4app.com/empresa/2",
 							"protocol": "https",
 							"host": [
 								"parseapi",
@@ -355,7 +341,7 @@
 							],
 							"path": [
 								"empresa",
-								"3"
+								"2"
 							]
 						}
 					},
@@ -380,7 +366,7 @@
 							}
 						],
 						"url": {
-							"raw": "https://parseapi.back4app.com/empresa/3",
+							"raw": "https://parseapi.back4app.com/empresa/2",
 							"protocol": "https",
 							"host": [
 								"parseapi",
@@ -389,7 +375,7 @@
 							],
 							"path": [
 								"empresa",
-								"3"
+								"2"
 							]
 						}
 					},
@@ -398,7 +384,7 @@
 			]
 		},
 		{
-			"name": "Vaga",
+			"name": "Vaga - AINDA NÂO FINALIZADO",
 			"item": [
 				{
 					"name": "Alterar Vaga",

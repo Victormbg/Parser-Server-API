@@ -30,23 +30,37 @@ const ConsultarUsuarioPorID = async (request, response) => {
 const RemoverUsuario = async (request, response) => {
   const { id } = request.params;
 
-  await usuarioModel.RemoverUsuario(id);
+  const resultado = await usuarioModel.RemoverUsuario(id);
 
-  return response.status(200).json({
-    status: "Sucesso",
-    mensagem: "Usuario Deletado com Sucesso",
-  });
+  if (resultado === "Usuário não encontrado") {
+    return response.status(422).json({
+      status: "Erro",
+      mensagem: resultado,
+    });
+  } else {
+    return response.status(200).json({
+      status: "Sucesso",
+      mensagem: "Usuario Deletado com Sucesso",
+    });
+  }
 };
 
 const AtualizarUsuario = async (request, response) => {
   const { id } = request.params;
 
-  await usuarioModel.AtualizarUsuario(id, request.body);
+  const resultado = await usuarioModel.AtualizarUsuario(id, request.body);
 
-  return response.status(200).json({
-    status: "Sucesso",
-    mensagem: "Usuario Alterado com Sucesso",
-  });
+  if (resultado === "Usuário não encontrado") {
+    return response.status(422).json({
+      status: "Erro",
+      mensagem: resultado,
+    });
+  } else {
+    return response.status(200).json({
+      status: "Sucesso",
+      mensagem: "Usuario Alterado com Sucesso",
+    });
+  }
 };
 
 module.exports = {
