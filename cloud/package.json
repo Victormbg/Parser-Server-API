@@ -3,6 +3,7 @@
         "express": "*",
         "body-parser": "*",
         "method-override": "*",
-        "mysql2": "*"
+        "mysql2": "*",
+        "express-async-errors": "*"
     }
 }

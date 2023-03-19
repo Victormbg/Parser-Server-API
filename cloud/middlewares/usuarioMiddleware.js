@@ -1,6 +1,13 @@
 const validateBody = (request, response, next) => {
   const { body } = request;
 
+  if (Object.values(body).length === 0) {
+    return response.status(400).json({
+      status: "Erro",
+      mensagem: "JSON Vazio",
+    });
+  }
+
   if (body.nome === undefined) {
     return response.status(400).json({
       status: "Erro",
@@ -47,6 +54,20 @@ const validateBody = (request, response, next) => {
     return response.status(400).json({
       status: "Erro",
       mensagem: "Campo 'idade' não pode ser menor de idade",
+    });
+  }
+
+  if (body.endereco === undefined) {
+    return response.status(400).json({
+      status: "Erro",
+      mensagem: "O Objeto 'endereco' é obrigatório",
+    });
+  }
+
+  if (Object.values(body.endereco).length === 0) {
+    return response.status(400).json({
+      status: "Erro",
+      mensagem: "O Objeto 'endereco' não pode ser vazio",
     });
   }
 
