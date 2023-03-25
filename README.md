@@ -1,44 +1,31 @@
-# Link do Download do CLI do B4A
-
-https://www.back4app.com/docs/local-development/parse-cli
-
-# Cria novo projeto ou pega um criado:
-
-b4a new
-
-# Fazer deploy do codigo Parser para o servidor b4a
-
-b4a deploy
-
-# Banco de Dados de Teste:
-
-https://www.db4free.net/signup.php
-
-Banco de dados: bancodadosapi
-
-Nome de usuário: adminapi
-
-Senha: testeapi20
-
-Email: victormbg2000@gmail.com
-
-Site: https://www.db4free.net/phpMyAdmin/
-
-# Site do Back4App
+# Site do Back4App:
 
 https://dashboard.back4app.com/apps
 
-# Testar Localmente:
+# Link do Download do CLI do back4app:
 
-1. Instalar o parser-server: npm install -g parse-server mongodb-runner
+https://www.back4app.com/docs/local-development/parse-cli
 
-2. mongodb-runner start
+# Passos da CLI:
 
-3. parse-server --appId TOMhAasW768J3xUcEmvCePlX9AwAzmdNtWmPABW6 --masterKey NlakQhJQoNrg46pNnVzm7fWqrQMkANf52rgoOIoF --databaseURI mongodb://localhost/test
+Ao baixar o b4a.exe, mover para "C:\windows\system32"
 
+# Configurar o Account Key do back4app:
 
+b4a configure accountkey
 
+# Cria novo projeto ou pegar um criado no back4app:
 
-# Links:
+b4a new
+
+# Fazer deploy do codigo Parser para o servidor back4app:
+
+b4a deploy
+
+# Definir as Environment Variables no back4app:
+
+https://www.back4app.com/docs/platform/parse-environment-variables
+
+# Links Suporte:
 
 https://andrew-lundy.medium.com/using-mysql-with-express-routes-f607ee9106d8

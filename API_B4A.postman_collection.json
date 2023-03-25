@@ -15,15 +15,11 @@
 						"header": [
 							{
 								"key": "X-Parse-Application-Id",
-								"value": "TOMhAasW768J3xUcEmvCePlX9AwAzmdNtWmPABW6"
+								"value": "{{X-Parse-Application-Id}}"
 							},
 							{
 								"key": "X-Parse-REST-API-Key",
-								"value": "NlakQhJQoNrg46pNnVzm7fWqrQMkANf52rgoOIoF"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json"
+								"value": "{{X-Parse-REST-API-Key}}"
 							}
 						],
 						"body": {
@@ -31,12 +27,9 @@
 							"raw": "{\r\n    \"nome\": \"Victor\",\r\n    \"sobrenome\": \"Teste NOVA API 6\",\r\n    \"idade\": 22,\r\n    \"endereco\": {\r\n        \"logradouro\": \"Rua Do Rio\",\r\n        \"municipio\": \"Rio de Janeiro\",\r\n        \"estado\": \"RJ\",\r\n        \"pais\": \"Brasil\"\r\n    }\r\n}"
 						},
 						"url": {
-							"raw": "https://parseapi.back4app.com/usuario",
-							"protocol": "https",
+							"raw": "{{host}}/usuario",
 							"host": [
-								"parseapi",
-								"back4app",
-								"com"
+								"{{host}}"
 							],
 							"path": [
 								"usuario"
@@ -52,15 +45,11 @@
 						"header": [
 							{
 								"key": "X-Parse-Application-Id",
-								"value": "TOMhAasW768J3xUcEmvCePlX9AwAzmdNtWmPABW6"
+								"value": "{{X-Parse-Application-Id}}"
 							},
 							{
 								"key": "X-Parse-REST-API-Key",
-								"value": "NlakQhJQoNrg46pNnVzm7fWqrQMkANf52rgoOIoF"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json"
+								"value": "{{X-Parse-REST-API-Key}}"
 							}
 						],
 						"body": {
@@ -68,12 +57,9 @@
 							"raw": "{\r\n    \"nome\": \"Victor\",\r\n    \"sobrenome\": \"Garcia 2\",\r\n    \"idade\": 23,\r\n    \"endereco\": {\r\n        \"logradouro\": \"Rua Do Rio\",\r\n        \"municipio\": \"Rio de Janeiro\",\r\n        \"estado\": \"RJ\",\r\n        \"pais\": \"Brasil\"\r\n    }\r\n}"
 						},
 						"url": {
-							"raw": "https://parseapi.back4app.com/usuario/24",
-							"protocol": "https",
+							"raw": "{{host}}/usuario/24",
 							"host": [
-								"parseapi",
-								"back4app",
-								"com"
+								"{{host}}"
 							],
 							"path": [
 								"usuario",
@@ -90,24 +76,17 @@
 						"header": [
 							{
 								"key": "X-Parse-Application-Id",
-								"value": "TOMhAasW768J3xUcEmvCePlX9AwAzmdNtWmPABW6"
+								"value": "{{X-Parse-Application-Id}}"
 							},
 							{
 								"key": "X-Parse-REST-API-Key",
-								"value": "NlakQhJQoNrg46pNnVzm7fWqrQMkANf52rgoOIoF"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json"
+								"value": "{{X-Parse-REST-API-Key}}"
 							}
 						],
 						"url": {
-							"raw": "https://parseapi.back4app.com/usuario",
-							"protocol": "https",
+							"raw": "{{host}}/usuario",
 							"host": [
-								"parseapi",
-								"back4app",
-								"com"
+								"{{host}}"
 							],
 							"path": [
 								"usuario"
@@ -123,25 +102,17 @@
 						"header": [
 							{
 								"key": "X-Parse-Application-Id",
-								"value": "TOMhAasW768J3xUcEmvCePlX9AwAzmdNtWmPABW6"
+								"value": "{{X-Parse-Application-Id}}"
 							},
 							{
 								"key": "X-Parse-REST-API-Key",
-								"value": "NlakQhJQoNrg46pNnVzm7fWqrQMkANf52rgoOIoF"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"disabled": true
+								"value": "{{X-Parse-REST-API-Key}}"
 							}
 						],
 						"url": {
-							"raw": "https://parseapi.back4app.com/usuario/24",
-							"protocol": "https",
+							"raw": "{{host}}/usuario/24",
 							"host": [
-								"parseapi",
-								"back4app",
-								"com"
+								"{{host}}"
 							],
 							"path": [
 								"usuario",
@@ -158,24 +129,17 @@
 						"header": [
 							{
 								"key": "X-Parse-Application-Id",
-								"value": "TOMhAasW768J3xUcEmvCePlX9AwAzmdNtWmPABW6"
+								"value": "{{X-Parse-Application-Id}}"
 							},
 							{
 								"key": "X-Parse-REST-API-Key",
-								"value": "NlakQhJQoNrg46pNnVzm7fWqrQMkANf52rgoOIoF"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json"
+								"value": "{{X-Parse-REST-API-Key}}"
 							}
 						],
 						"url": {
-							"raw": "https://parseapi.back4app.com/usuario/23",
-							"protocol": "https",
+							"raw": "{{host}}/usuario/23",
 							"host": [
-								"parseapi",
-								"back4app",
-								"com"
+								"{{host}}"
 							],
 							"path": [
 								"usuario",
@@ -197,15 +161,11 @@
 						"header": [
 							{
 								"key": "X-Parse-Application-Id",
-								"value": "TOMhAasW768J3xUcEmvCePlX9AwAzmdNtWmPABW6"
+								"value": "{{X-Parse-Application-Id}}"
 							},
 							{
 								"key": "X-Parse-REST-API-Key",
-								"value": "NlakQhJQoNrg46pNnVzm7fWqrQMkANf52rgoOIoF"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json"
+								"value": "{{X-Parse-REST-API-Key}}"
 							}
 						],
 						"body": {
@@ -213,12 +173,9 @@
 							"raw": "{\r\n    \"NomeEmpresa\": \"Lojas Americanas\",\r\n    \"RazaoSocial\": \"LOJAS AMERICANAS S.A.\",\r\n    \"cnpj\": \"33.014.556/0001-96\",\r\n    \"endereco\": {\r\n        \"logradouro\": \"Rua Do Rio\",\r\n        \"municipio\": \"Rio de Janeiro\",\r\n        \"estado\": \"RJ\",\r\n        \"pais\": \"Brasil\"\r\n    }\r\n}"
 						},
 						"url": {
-							"raw": "https://parseapi.back4app.com/empresa",
-							"protocol": "https",
+							"raw": "{{host}}/empresa",
 							"host": [
-								"parseapi",
-								"back4app",
-								"com"
+								"{{host}}"
 							],
 							"path": [
 								"empresa"
@@ -241,15 +198,11 @@
 						"header": [
 							{
 								"key": "X-Parse-Application-Id",
-								"value": "TOMhAasW768J3xUcEmvCePlX9AwAzmdNtWmPABW6"
+								"value": "{{X-Parse-Application-Id}}"
 							},
 							{
 								"key": "X-Parse-REST-API-Key",
-								"value": "NlakQhJQoNrg46pNnVzm7fWqrQMkANf52rgoOIoF"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json"
+								"value": "{{X-Parse-REST-API-Key}}"
 							}
 						],
 						"body": {
@@ -257,12 +210,9 @@
 							"raw": "{\r\n    \"NomeEmpresa\": \"Lojas Americanas\",\r\n    \"RazaoSocial\": \"LOJAS AMERICANAS S.A.\",\r\n    \"cnpj\": \"33.014.556/0001-96\",\r\n    \"endereco\": {\r\n        \"logradouro\": \"Rua Do Rio\",\r\n        \"municipio\": \"São Paulo\",\r\n        \"estado\": \"SP\",\r\n        \"pais\": \"Brasil\"\r\n    }\r\n}"
 						},
 						"url": {
-							"raw": "https://parseapi.back4app.com/empresa/2",
-							"protocol": "https",
+							"raw": "{{host}}/empresa/2",
 							"host": [
-								"parseapi",
-								"back4app",
-								"com"
+								"{{host}}"
 							],
 							"path": [
 								"empresa",
@@ -286,24 +236,17 @@
 						"header": [
 							{
 								"key": "X-Parse-Application-Id",
-								"value": "TOMhAasW768J3xUcEmvCePlX9AwAzmdNtWmPABW6"
+								"value": "{{X-Parse-Application-Id}}"
 							},
 							{
 								"key": "X-Parse-REST-API-Key",
-								"value": "NlakQhJQoNrg46pNnVzm7fWqrQMkANf52rgoOIoF"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json"
+								"value": "{{X-Parse-REST-API-Key}}"
 							}
 						],
 						"url": {
-							"raw": "https://parseapi.back4app.com/empresa/Marcos",
-							"protocol": "https",
+							"raw": "{{host}}/empresa/Marcos",
 							"host": [
-								"parseapi",
-								"back4app",
-								"com"
+								"{{host}}"
 							],
 							"path": [
 								"empresa",
@@ -320,24 +263,17 @@
 						"header": [
 							{
 								"key": "X-Parse-Application-Id",
-								"value": "TOMhAasW768J3xUcEmvCePlX9AwAzmdNtWmPABW6"
+								"value": "{{X-Parse-Application-Id}}"
 							},
 							{
 								"key": "X-Parse-REST-API-Key",
-								"value": "NlakQhJQoNrg46pNnVzm7fWqrQMkANf52rgoOIoF"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json"
+								"value": "{{X-Parse-REST-API-Key}}"
 							}
 						],
 						"url": {
-							"raw": "https://parseapi.back4app.com/empresa/2",
-							"protocol": "https",
+							"raw": "{{host}}/empresa/2",
 							"host": [
-								"parseapi",
-								"back4app",
-								"com"
+								"{{host}}"
 							],
 							"path": [
 								"empresa",
@@ -354,24 +290,17 @@
 						"header": [
 							{
 								"key": "X-Parse-Application-Id",
-								"value": "TOMhAasW768J3xUcEmvCePlX9AwAzmdNtWmPABW6"
+								"value": "{{X-Parse-Application-Id}}"
 							},
 							{
 								"key": "X-Parse-REST-API-Key",
-								"value": "NlakQhJQoNrg46pNnVzm7fWqrQMkANf52rgoOIoF"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json"
+								"value": "{{X-Parse-REST-API-Key}}"
 							}
 						],
 						"url": {
-							"raw": "https://parseapi.back4app.com/empresa/2",
-							"protocol": "https",
+							"raw": "{{host}}/empresa/2",
 							"host": [
-								"parseapi",
-								"back4app",
-								"com"
+								"{{host}}"
 							],
 							"path": [
 								"empresa",
@@ -393,15 +322,11 @@
 						"header": [
 							{
 								"key": "X-Parse-Application-Id",
-								"value": "TOMhAasW768J3xUcEmvCePlX9AwAzmdNtWmPABW6"
+								"value": "{{X-Parse-Application-Id}}"
 							},
 							{
 								"key": "X-Parse-REST-API-Key",
-								"value": "NlakQhJQoNrg46pNnVzm7fWqrQMkANf52rgoOIoF"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json"
+								"value": "{{X-Parse-REST-API-Key}}"
 							}
 						],
 						"body": {
@@ -409,12 +334,9 @@
 							"raw": "{\r\n    \"nome\": \"Victor\",\r\n    \"sobrenome\": \"Garcia\",\r\n    \"pais\": \"Brasil\",\r\n    \"municipio\": \"Rio de Janeiro\",\r\n    \"estado\": \"RJ\",\r\n    \"idade\": 18\r\n}"
 						},
 						"url": {
-							"raw": "https://parseapi.back4app.com/vaga/4",
-							"protocol": "https",
+							"raw": "{{host}}/vaga/4",
 							"host": [
-								"parseapi",
-								"back4app",
-								"com"
+								"{{host}}"
 							],
 							"path": [
 								"vaga",
@@ -438,15 +360,11 @@
 						"header": [
 							{
 								"key": "X-Parse-Application-Id",
-								"value": "TOMhAasW768J3xUcEmvCePlX9AwAzmdNtWmPABW6"
+								"value": "{{X-Parse-Application-Id}}"
 							},
 							{
 								"key": "X-Parse-REST-API-Key",
-								"value": "NlakQhJQoNrg46pNnVzm7fWqrQMkANf52rgoOIoF"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json"
+								"value": "{{X-Parse-REST-API-Key}}"
 							}
 						],
 						"body": {
@@ -454,12 +372,9 @@
 							"raw": "{\r\n    \"nome\": \"Marcos\",\r\n    \"sobrenome\": \"Paulo\",\r\n    \"pais\": \"Brasil\",\r\n    \"municipio\": \"Rio de Janeiro\",\r\n    \"estado\": \"RJ\",\r\n    \"idade\": 25\r\n}"
 						},
 						"url": {
-							"raw": "https://parseapi.back4app.com/vaga",
-							"protocol": "https",
+							"raw": "{{host}}/vaga",
 							"host": [
-								"parseapi",
-								"back4app",
-								"com"
+								"{{host}}"
 							],
 							"path": [
 								"vaga"
@@ -482,24 +397,17 @@
 						"header": [
 							{
 								"key": "X-Parse-Application-Id",
-								"value": "TOMhAasW768J3xUcEmvCePlX9AwAzmdNtWmPABW6"
+								"value": "{{X-Parse-Application-Id}}"
 							},
 							{
 								"key": "X-Parse-REST-API-Key",
-								"value": "NlakQhJQoNrg46pNnVzm7fWqrQMkANf52rgoOIoF"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json"
+								"value": "{{X-Parse-REST-API-Key}}"
 							}
 						],
 						"url": {
-							"raw": "https://parseapi.back4app.com/vaga/Marcos",
-							"protocol": "https",
+							"raw": "{{host}}/vaga/Marcos",
 							"host": [
-								"parseapi",
-								"back4app",
-								"com"
+								"{{host}}"
 							],
 							"path": [
 								"vaga",
@@ -516,24 +424,17 @@
 						"header": [
 							{
 								"key": "X-Parse-Application-Id",
-								"value": "TOMhAasW768J3xUcEmvCePlX9AwAzmdNtWmPABW6"
+								"value": "{{X-Parse-Application-Id}}"
 							},
 							{
 								"key": "X-Parse-REST-API-Key",
-								"value": "NlakQhJQoNrg46pNnVzm7fWqrQMkANf52rgoOIoF"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json"
+								"value": "{{X-Parse-REST-API-Key}}"
 							}
 						],
 						"url": {
-							"raw": "https://parseapi.back4app.com/vaga/3",
-							"protocol": "https",
+							"raw": "{{host}}/vaga/3",
 							"host": [
-								"parseapi",
-								"back4app",
-								"com"
+								"{{host}}"
 							],
 							"path": [
 								"vaga",
@@ -550,24 +451,17 @@
 						"header": [
 							{
 								"key": "X-Parse-Application-Id",
-								"value": "TOMhAasW768J3xUcEmvCePlX9AwAzmdNtWmPABW6"
+								"value": "{{X-Parse-Application-Id}}"
 							},
 							{
 								"key": "X-Parse-REST-API-Key",
-								"value": "NlakQhJQoNrg46pNnVzm7fWqrQMkANf52rgoOIoF"
-							},
-							{
-								"key": "Content-Type",
-								"value": "application/json"
+								"value": "{{X-Parse-REST-API-Key}}"
 							}
 						],
 						"url": {
-							"raw": "https://parseapi.back4app.com/vaga/3",
-							"protocol": "https",
+							"raw": "{{host}}/vaga/3",
 							"host": [
-								"parseapi",
-								"back4app",
-								"com"
+								"{{host}}"
 							],
 							"path": [
 								"vaga",

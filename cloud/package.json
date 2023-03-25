@@ -1,9 +1,10 @@
 {
-    "dependencies": {
-        "express": "*",
-        "body-parser": "*",
-        "method-override": "*",
-        "mysql2": "*",
-        "express-async-errors": "*"
-    }
+  "dependencies": {
+    "dotenv": "*",
+    "express": "*",
+    "body-parser": "*",
+    "method-override": "*",
+    "mysql2": "*",
+    "express-async-errors": "*"
+  }
 }

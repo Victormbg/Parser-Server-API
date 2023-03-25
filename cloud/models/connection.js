@@ -1,18 +1,11 @@
 const mysql = require("mysql2/promise");
+require("dotenv").config();
 
 const connection = mysql.createPool({
-  host: "db4free.net",
-  user: "adminapi",
-  password: "testeapi20",
-  database: "bancodadosapi",
+  host: process.env.MYSQL_HOST,
+  user: process.env.MYSQL_USER,
+  password: process.env.MYSQL_PASSWORD,
+  database: process.env.MYSQL_DB,
 });
-/*
-connection.connect(function (err) {
-  if (err) {
-    console.error("Erro de conexão do BD: " + err.stack);
-    return;
-  }
-  console.log("Sucesso ao conectar ao banco de dados. threadId: " + connection.threadId);
-});
-*/
+
 module.exports = connection;
