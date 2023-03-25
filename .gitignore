@@ -1,4 +1,10 @@
+# Removendo o arquivo de env
 cloud/.env
+# Removendo o arquivo de ACESSOS
 ACESSOS.md
+# Removendo o arquivo de postman_environment
 API_B4A.postman_environment.json
-.parse.local
+# Removendo o arquivo .parse.local com o applicationId
+*.parse.local
+# Removendo o arquivo .parse.project
+*.parse.project
