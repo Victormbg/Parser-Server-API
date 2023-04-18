@@ -1,57 +1,58 @@
 const validateBody = (request, response, next) => {
+
+  console.log(`[${new Date().toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" })}] Entrou no validateBody`);
+
   const { body } = request;
 
-  const requiredFields = ['nome', 'sobrenome', 'idade', 'endereco'];
-  const requiredAddressFields = ['logradouro', 'municipio', 'estado', 'pais'];
+  const requiredFields = ['idLinkedIn', 'nome', 'cpf', 'endereco'];
+  const requiredEnderecoFields = ['cep'];
 
   for (const field of requiredFields) {
+
     if (!body[field]) {
-      return response.status(400).json({
-        status: "Erro",
-        mensagem: `Campo '${field}' é obrigatório`,
-      });
+      const err = new Error(`Campo '${field}' é obrigatório.`);
+      err.status = 400;
+      console.log(`[${new Date().toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" })}] Erro: ${err.message}`);
+      throw err;
     }
 
     if (typeof body[field] === 'string' && body[field].trim() === '') {
-      return response.status(400).json({
-        status: "Erro",
-        mensagem: `Campo '${field}' não pode estar vazio`,
-      });
+      const err = new Error(`Campo '${field}' não pode estar vazio.`);
+      err.status = 400;
+      console.log(`[${new Date().toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" })}] Erro: ${err.message}`);
+      throw err;
     }
-
-    if (field === 'idade' && body[field] < 18) {
-      return response.status(400).json({
-        status: "Erro",
-        mensagem: "Campo 'idade' não pode ser menor de idade",
-      });
-    }
-
     if (field === 'endereco') {
-      if (!body[field] || Object.keys(body[field]).length === 0) {
-        return response.status(400).json({
-          status: "Erro",
-          mensagem: "O Objeto 'endereco' não pode ser vazio",
-        });
-      }
 
-      for (const addressField of requiredAddressFields) {
+      for (const addressField of requiredEnderecoFields) {
+
         if (!body[field][addressField]) {
-          return response.status(400).json({
-            status: "Erro",
-            mensagem: `Campo '${addressField}' é obrigatório`,
-          });
+          const err = new Error(`Campo '${addressField}' é obrigatório.`);
+          err.status = 400;
+          console.log(`[${new Date().toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" })}] Erro: ${err.message}`);
+          throw err;
         }
 
         if (typeof body[field][addressField] === 'string' && body[field][addressField].trim() === '') {
-          return response.status(400).json({
-            status: "Erro",
-            mensagem: `Campo '${addressField}' não pode estar vazio`,
-          });
+          const err = new Error(`Campo '${addressField}' não pode estar vazio.`);
+          err.status = 400;
+          console.log(`[${new Date().toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" })}] Erro: ${err.message}`);
+          throw err;
         }
+
+        if (addressField === 'cep' && body[field][addressField].length !== 8) {
+          const err = new Error("Campo 'cep' é composto por oito dígitos, cinco de um lado e três de outro.");
+          err.status = 400;
+          console.log(`[${new Date().toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" })}] Erro: ${err.message}`);
+          throw err;
+        }
+
       }
     }
+
   }
 
+  console.log(`[${new Date().toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" })}] Validou os dados do usuário com sucesso.`);
   next();
 };
 

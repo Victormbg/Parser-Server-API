@@ -1,6 +1,6 @@
 const query = require("./connection");
 
-const criarUsuario = async (usuario) => {
+const criarUsuario2 = async (usuario) => {
   const { nome, sobrenome, idade } = usuario;
   const { logradouro, municipio, estado, pais } = usuario.endereco;
   const sql =
@@ -23,10 +23,12 @@ const criarUsuario = async (usuario) => {
   }
 };
 
-const criarUsuario2 = async (usuario) => {
-  const { idLinkedIn, nome, sobrenome, dataNascimento, cpf, endereco, telefone } = usuario;
+const criarUsuario = async (usuario) => {
+
+  const { idLinkedIn, nome, sobrenome, dataNascimento, cpf, foto, tipoConta, endereco, telefone } = usuario;
 
   try {
+
     await query('START TRANSACTION');
 
     const { insertId: loginId } = await query(
@@ -34,24 +36,88 @@ const criarUsuario2 = async (usuario) => {
       [idLinkedIn]
     );
 
+    if (loginId <= 0) {
+      throw new Error(`Erro ao criar login para o usuário ${nome} ${sobrenome}`);
+    }
+
+    // ENDERECO
+
+    const [rows] = await query(
+      'SELECT e.*, u.id AS usuario_id FROM endereco e LEFT JOIN usuario u ON e.id = u.endereco_id WHERE e.cep = ? AND e.numero = ?',
+      [endereco.cep, endereco.numero]
+    );
+    if (!rows) {
+      const result = await query(
+        'INSERT INTO endereco (cep, numero, complemento, logradouro, bairro, cidade, estado, pais) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
+        [endereco.cep, endereco.numero, endereco.complemento, endereco.logradouro, endereco.bairro, endereco.cidade, endereco.estado, endereco.pais]
+      );
+
+      enderecoId = result.insertId;
+      if (enderecoId <= 0) {
+        throw new Error(`Erro ao criar endereço para o usuário ${nome} ${sobrenome}`);
+      }
+    } else {
+      if (rows.length > 0) {
+        const enderecoExistente = rows[0];
+
+        // Se o complemento for diferente, atualiza o registro
+        if (enderecoExistente.complemento !== endereco.complemento) {
+          const result = await query(
+            'UPDATE endereco SET complemento = ? WHERE id = ?',
+            [endereco.complemento, enderecoExistente.id]
+          );
+
+          if (result.affectedRows === 0) {
+            throw new Error(`Erro ao atualizar endereço para o usuário ${nome} ${sobrenome}`);
+          }
+        }
+
+        enderecoId = enderecoExistente.id;
+      } else {
+        const result = await query(
+          'INSERT INTO endereco (cep, numero, complemento, logradouro, bairro, cidade, estado, pais) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
+          [endereco.cep, endereco.numero, endereco.complemento, endereco.logradouro, endereco.bairro, endereco.cidade, endereco.estado, endereco.pais]
+        );
+
+        enderecoId = result.insertId;
+        if (enderecoId <= 0) {
+          throw new Error(`Erro ao criar endereço para o usuário ${nome} ${sobrenome}`);
+        }
+      }
+    }
+
+
+    // TELEFONE
+
+    // Verificar se o telefone já existe na tabela telefone
+    const [rowsTelefone] = await query(
+      'SELECT idTelefone FROM telefone WHERE ddd = ? AND numero = ?',
+      [telefone.ddd, telefone.numero]
+    );
+    let telefoneId;
+    if (rowsTelefone.length > 0) {
+      telefoneId = rowsTelefone[0].idTelefone;
+    } else {
+      // Inserir um novo registro na tabela telefone
+      const result = await query(
+        'INSERT INTO telefone (tipo, ddd, numero) VALUES (?, ?, ?)',
+        [telefone.tipo, telefone.ddd, telefone.numero]
+      );
+      telefoneId = result.insertId;
+      if (telefoneId <= 0) {
+        throw new Error(`Erro ao criar telefone para o usuário ${nome} ${sobrenome}`);
+      }
+    }
+
     const { insertId: usuarioId } = await query(
-      'INSERT INTO usuario (nome, sobrenome, cpf, dataNascimento, login_idLogin) VALUES (?, ?, ?, ?)',
-      [nome, sobrenome, dataNascimento, cpf, loginId]
-    );
-
-    const { insertId: enderecoId } = await query(
-      'INSERT INTO endereco (tipo, logradouro, cep, bairro, estado, pais, usuario_idusuario) VALUES (?, ?, ?, ?, ?, ?)',
-      [endereco.tipo, endereco.logradouro, endereco.cep, endereco.bairro, endereco.estado, endereco.pais, usuarioId]
-    );
-
-    const { insertId: telefoneId } = await query(
-      'INSERT INTO telefone (tipo, ddd, numero, usuario_idusuario) VALUES (?, ?, ?, ?)',
-      [telefone.tipo, telefone.ddd, telefone.numero, usuarioId]
+      'INSERT INTO usuario (nome, sobrenome, dataNascimento, cpf, foto, tipoConta, login_idLogin, endereco_idendereco, telefone_idtelefone) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)',
+      [nome, sobrenome, dataNascimento, cpf, foto, tipoConta, loginId, enderecoId, telefoneId]
     );
 
     await query('COMMIT');
 
     console.log(`[${new Date().toISOString()}] - Usuário criado com sucesso!`);
+
     return usuarioId;
   } catch (err) {
     await query('ROLLBACK');
