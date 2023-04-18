@@ -1,31 +1,26 @@
-# Site do Back4App:
-
+# API no Back4App:
+Link para acessar o site do Back4App:
 https://dashboard.back4app.com/apps
 
-# Link do Download do CLI do back4app:
-
+# Download do CLI do Back4App:
+Link para baixar a interface de linha de comando (CLI) do Back4App:
 https://www.back4app.com/docs/local-development/parse-cli
 
-# Passos da CLI:
+# Passos para usar a CLI:
+1. Depois de baixar o b4a.exe, mova-o para "C:\windows\system32"
 
-Ao baixar o b4a.exe, mover para "C:\windows\system32"
-
-# Configurar o Account Key do back4app:
-
+2. Configure a Chave de Conta do Back4App:
 b4a configure accountkey
 
-# Cria novo projeto ou pegar um criado no back4app:
-
+3. Crie um novo projeto ou obtenha um já criado no Back4App:
 b4a new
 
-# Fazer deploy do codigo Parser para o servidor back4app:
-
+4. Faça o deploy do código do Parser para o servidor do Back4App:
 b4a deploy
 
-# Definir as Environment Variables no back4app:
-
+5. Defina as variáveis de ambiente no Back4App:
 https://www.back4app.com/docs/platform/parse-environment-variables
 
-# Links Suporte:
-
+# Links de suporte:
+Link com informações sobre como utilizar o MySQL com rotas Express:
 https://andrew-lundy.medium.com/using-mysql-with-express-routes-f607ee9106d8

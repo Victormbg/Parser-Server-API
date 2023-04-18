@@ -1,4 +1,3 @@
-
 // The example below shows you how a cloud code function looks like.
 
 //Parse.Cloud.define("hello", (request) => {

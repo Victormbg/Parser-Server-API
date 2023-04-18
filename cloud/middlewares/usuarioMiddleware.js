@@ -1,130 +1,55 @@
 const validateBody = (request, response, next) => {
   const { body } = request;
 
-  if (Object.values(body).length === 0) {
-    return response.status(400).json({
-      status: "Erro",
-      mensagem: "JSON Vazio",
-    });
-  }
+  const requiredFields = ['nome', 'sobrenome', 'idade', 'endereco'];
+  const requiredAddressFields = ['logradouro', 'municipio', 'estado', 'pais'];
 
-  if (body.nome === undefined) {
-    return response.status(400).json({
-      status: "Erro",
-      mensagem: "Campo 'nome' é obrigatório",
-    });
-  }
+  for (const field of requiredFields) {
+    if (!body[field]) {
+      return response.status(400).json({
+        status: "Erro",
+        mensagem: `Campo '${field}' é obrigatório`,
+      });
+    }
 
-  if (body.nome === "") {
-    return response.status(400).json({
-      status: "Erro",
-      mensagem: "Campo 'nome' não pode estar vazio",
-    });
-  }
+    if (typeof body[field] === 'string' && body[field].trim() === '') {
+      return response.status(400).json({
+        status: "Erro",
+        mensagem: `Campo '${field}' não pode estar vazio`,
+      });
+    }
 
-  if (body.sobrenome === undefined) {
-    return response.status(400).json({
-      status: "Erro",
-      mensagem: "Campo 'sobrenome' é obrigatório",
-    });
-  }
+    if (field === 'idade' && body[field] < 18) {
+      return response.status(400).json({
+        status: "Erro",
+        mensagem: "Campo 'idade' não pode ser menor de idade",
+      });
+    }
 
-  if (body.sobrenome === "") {
-    return response.status(400).json({
-      status: "Erro",
-      mensagem: "Campo 'sobrenome' não pode estar vazio",
-    });
-  }
+    if (field === 'endereco') {
+      if (!body[field] || Object.keys(body[field]).length === 0) {
+        return response.status(400).json({
+          status: "Erro",
+          mensagem: "O Objeto 'endereco' não pode ser vazio",
+        });
+      }
 
-  if (body.idade === undefined) {
-    return response.status(400).json({
-      status: "Erro",
-      mensagem: "Campo 'idade' é obrigatório",
-    });
-  }
+      for (const addressField of requiredAddressFields) {
+        if (!body[field][addressField]) {
+          return response.status(400).json({
+            status: "Erro",
+            mensagem: `Campo '${addressField}' é obrigatório`,
+          });
+        }
 
-  if (body.idade === "") {
-    return response.status(400).json({
-      status: "Erro",
-      mensagem: "Campo 'idade' não pode estar vazio",
-    });
-  }
-
-  if (body.idade < 18) {
-    return response.status(400).json({
-      status: "Erro",
-      mensagem: "Campo 'idade' não pode ser menor de idade",
-    });
-  }
-
-  if (body.endereco === undefined) {
-    return response.status(400).json({
-      status: "Erro",
-      mensagem: "O Objeto 'endereco' é obrigatório",
-    });
-  }
-
-  if (Object.values(body.endereco).length === 0) {
-    return response.status(400).json({
-      status: "Erro",
-      mensagem: "O Objeto 'endereco' não pode ser vazio",
-    });
-  }
-
-  if (body.endereco.logradouro === undefined) {
-    return response.status(400).json({
-      status: "Erro",
-      mensagem: "Campo 'logradouro' é obrigatório",
-    });
-  }
-
-  if (body.endereco.logradouro === "") {
-    return response.status(400).json({
-      status: "Erro",
-      mensagem: "Campo 'logradouro' não pode estar vazio",
-    });
-  }
-
-  if (body.endereco.municipio === undefined) {
-    return response.status(400).json({
-      status: "Erro",
-      mensagem: "Campo 'municipio' é obrigatório",
-    });
-  }
-
-  if (body.endereco.municipio === "") {
-    return response.status(400).json({
-      status: "Erro",
-      mensagem: "Campo 'municipio' não pode estar vazio",
-    });
-  }
-
-  if (body.endereco.estado === undefined) {
-    return response.status(400).json({
-      status: "Erro",
-      mensagem: "Campo 'estado' é obrigatório",
-    });
-  }
-
-  if (body.endereco.estado === "") {
-    return response.status(400).json({
-      status: "Erro",
-      mensagem: "Campo 'estado' não pode estar vazio",
-    });
-  }
-
-  if (body.endereco.pais === undefined) {
-    return response.status(400).json({
-      status: "Erro",
-      mensagem: "Campo 'pais' é obrigatório",
-    });
-  }
-
-  if (body.endereco.pais === "") {
-    return response.status(400).json({
-      status: "Erro",
-      mensagem: "Campo 'pais' não pode estar vazio",
-    });
+        if (typeof body[field][addressField] === 'string' && body[field][addressField].trim() === '') {
+          return response.status(400).json({
+            status: "Erro",
+            mensagem: `Campo '${addressField}' não pode estar vazio`,
+          });
+        }
+      }
+    }
   }
 
   next();
