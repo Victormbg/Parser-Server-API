@@ -1,24 +1,24 @@
 const express = require("express");
-const usuarioController = require("../controllers/usuarioController");
-const usuarioMiddleware = require("../middlewares/usuarioMiddleware");
+const loginController = require("../controllers/loginController");
+const loginMiddleware = require("../middlewares/loginMiddleware");
 
 const router = express.Router();
 
 router.get("/:id", (req, res, next) => {
     console.log(`[${new Date().toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" })}] ${req.method} ${req.originalUrl}`);
-    usuarioController.ConsultarUsuarioPorID(req, res, next);
+    loginController.ConsultarLoginPorID(req, res, next);
 });
-router.post("/", usuarioMiddleware.validateBodyPOST, (req, res, next) => {
+router.post("/", loginMiddleware.validateBody, (req, res, next) => {
     console.log(`[${new Date().toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" })}] ${req.method} ${req.originalUrl}`);
-    usuarioController.CriarUsuario(req, res, next);
+    loginController.CriarLogin(req, res, next);
 });
 router.delete("/:id", (req, res, next) => {
     console.log(`[${new Date().toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" })}] ${req.method} ${req.originalUrl}`);
-    usuarioController.RemoverUsuario(req, res, next);
+    loginController.RemoverLogin(req, res, next);
 });
-router.put("/:id", usuarioMiddleware.validateBodyPUT, (req, res, next) => {
+router.put("/:id", loginMiddleware.validateBody, (req, res, next) => {
     console.log(`[${new Date().toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" })}] ${req.method} ${req.originalUrl}`);
-    usuarioController.AtualizarUsuario(req, res, next);
+    loginController.AtualizarLogin(req, res, next);
 });
 
 module.exports = router;

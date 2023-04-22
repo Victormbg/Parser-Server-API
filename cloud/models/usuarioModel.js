@@ -1,212 +1,197 @@
+const {
+  verificarLoginExistente,
+  verificarEnderecoExistente,
+  inserirEndereco,
+  inserirUsuario,
+  validarIdLinkedIn,
+  buscarUsuarioPorIdLinkedIn,
+  removerUsuarioPorIdLinkedIn,
+  atualizarUsuarioPorIdLinkedIn
+} = require('./queriesUsuario');
 const query = require("./connection");
-
-const criarUsuario2 = async (usuario) => {
-  const { nome, sobrenome, idade } = usuario;
-  const { logradouro, municipio, estado, pais } = usuario.endereco;
-  const sql =
-    "INSERT INTO usuario(nome, sobrenome, idade, logradouro, municipio, estado, pais) VALUES (?, ?, ?, ?, ?, ?, ?)";
-  try {
-    const result = await query(sql, [
-      nome,
-      sobrenome,
-      idade,
-      logradouro,
-      municipio,
-      estado,
-      pais,
-    ]);
-    console.log(`[${new Date().toISOString()}] - Usuário criado com sucesso!`);
-    return result.insertId;
-  } catch (err) {
-    console.error(`[${new Date().toISOString()}] - Erro ao criar usuário: ${err.message}`);
-    throw err;
-  }
-};
 
 const criarUsuario = async (usuario) => {
 
-  const { idLinkedIn, nome, sobrenome, dataNascimento, cpf, foto, tipoConta, endereco, telefone } = usuario;
+  const { idLinkedIn, endereco, telefone } = usuario;
 
   try {
 
     await query('START TRANSACTION');
 
-    const { insertId: loginId } = await query(
-      'INSERT INTO login (idLinkedIn) VALUES (?)',
-      [idLinkedIn]
-    );
-
-    if (loginId <= 0) {
-      throw new Error(`Erro ao criar login para o usuário ${nome} ${sobrenome}`);
+    // Verifica se o idLinkedIn existe na tabela "login"
+    const loginExistente = await verificarLoginExistente(idLinkedIn);
+    if (!loginExistente) {
+      const err = new Error('Não foi possível criar o usuário, pois o idLinkedIn informado não existe na tabela de login');
+      err.status = 409; // Define o código de status HTTP como 409 (Conflito)
+      throw err;
     }
 
-    // ENDERECO
+    // Verifica se o idLinkedIn já existe na tabela "usuario"
+    const idLinkedInExistente = await validarIdLinkedIn(idLinkedIn);
+    if (idLinkedInExistente) {
+      const err = new Error('Não foi possível criar o usuário, pois o idLinkedIn informado já existe na tabela de usuários');
+      err.status = 409; // Define o código de status HTTP como 409 (Conflito)
+      throw err;
+    }
 
-    const [rows] = await query(
-      'SELECT e.*, u.id AS usuario_id FROM endereco e LEFT JOIN usuario u ON e.id = u.endereco_id WHERE e.cep = ? AND e.numero = ?',
-      [endereco.cep, endereco.numero]
-    );
-    if (!rows) {
-      const result = await query(
-        'INSERT INTO endereco (cep, numero, complemento, logradouro, bairro, cidade, estado, pais) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
-        [endereco.cep, endereco.numero, endereco.complemento, endereco.logradouro, endereco.bairro, endereco.cidade, endereco.estado, endereco.pais]
-      );
+    // Verifica se o CEP já existe na tabela "endereco"
+    const enderecoExistente = await verificarEnderecoExistente(endereco.cep);
+    let enderecoCEP;
 
-      enderecoId = result.insertId;
-      if (enderecoId <= 0) {
-        throw new Error(`Erro ao criar endereço para o usuário ${nome} ${sobrenome}`);
-      }
+    if (enderecoExistente) {
+      // Caso já exista, utiliza o ID do endereço existente
+      enderecoCEP = enderecoExistente.cep;
     } else {
-      if (rows.length > 0) {
-        const enderecoExistente = rows[0];
+      // Caso não exista, insere um novo endereço e utiliza o CEP gerado
+      const enderecoInserido = await inserirEndereco(endereco);
+      enderecoCEP = enderecoInserido.cep;
+    }
 
-        // Se o complemento for diferente, atualiza o registro
-        if (enderecoExistente.complemento !== endereco.complemento) {
-          const result = await query(
-            'UPDATE endereco SET complemento = ? WHERE id = ?',
-            [endereco.complemento, enderecoExistente.id]
-          );
-
-          if (result.affectedRows === 0) {
-            throw new Error(`Erro ao atualizar endereço para o usuário ${nome} ${sobrenome}`);
-          }
-        }
-
-        enderecoId = enderecoExistente.id;
-      } else {
-        const result = await query(
-          'INSERT INTO endereco (cep, numero, complemento, logradouro, bairro, cidade, estado, pais) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
-          [endereco.cep, endereco.numero, endereco.complemento, endereco.logradouro, endereco.bairro, endereco.cidade, endereco.estado, endereco.pais]
-        );
-
-        enderecoId = result.insertId;
-        if (enderecoId <= 0) {
-          throw new Error(`Erro ao criar endereço para o usuário ${nome} ${sobrenome}`);
-        }
+    let dddFixo = null, numeroFixo = null, dddCelular = null, numeroCelular = null;
+    if (telefone) {
+      const { tipo, ddd, numero } = telefone;
+      if (tipo === 'fixo') {
+        dddFixo = ddd;
+        numeroFixo = numero;
+      } else if (tipo === 'celular') {
+        dddCelular = ddd;
+        numeroCelular = numero;
       }
     }
 
-
-    // TELEFONE
-
-    // Verificar se o telefone já existe na tabela telefone
-    const [rowsTelefone] = await query(
-      'SELECT idTelefone FROM telefone WHERE ddd = ? AND numero = ?',
-      [telefone.ddd, telefone.numero]
-    );
-    let telefoneId;
-    if (rowsTelefone.length > 0) {
-      telefoneId = rowsTelefone[0].idTelefone;
-    } else {
-      // Inserir um novo registro na tabela telefone
-      const result = await query(
-        'INSERT INTO telefone (tipo, ddd, numero) VALUES (?, ?, ?)',
-        [telefone.tipo, telefone.ddd, telefone.numero]
-      );
-      telefoneId = result.insertId;
-      if (telefoneId <= 0) {
-        throw new Error(`Erro ao criar telefone para o usuário ${nome} ${sobrenome}`);
-      }
-    }
-
-    const { insertId: usuarioId } = await query(
-      'INSERT INTO usuario (nome, sobrenome, dataNascimento, cpf, foto, tipoConta, login_idLogin, endereco_idendereco, telefone_idtelefone) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)',
-      [nome, sobrenome, dataNascimento, cpf, foto, tipoConta, loginId, enderecoId, telefoneId]
-    );
+    const usuarioId = await inserirUsuario(usuario, enderecoCEP, dddFixo, numeroFixo, dddCelular, numeroCelular)
 
     await query('COMMIT');
 
-    console.log(`[${new Date().toISOString()}] - Usuário criado com sucesso!`);
+    console.log(`[${new Date().toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" })}] - Usuário criado com sucesso!`);
 
     return usuarioId;
+
   } catch (err) {
     await query('ROLLBACK');
-    console.error(`[${new Date().toISOString()}] - Erro ao criar usuário: ${err.message}`);
+    console.error(`[${new Date().toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" })}] - Erro ao criar usuário: ${err.message}`);
     throw err;
   }
 };
 
-const consultarUsuarioPorId = async (id) => {
-  console.log(`[${new Date().toISOString()}] - Consultando usuário de ID: ${id}`);
-  const sql = "SELECT * FROM `usuario` WHERE `id` = ?";
+const consultarUsuarioPorId = async (idLinkedIn) => {
+  console.log(`[${new Date().toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" })}] - Consultando usuário de idLinkedIn: ${idLinkedIn}`);
   try {
-    const [rows, fields] = await query(sql, [id]);
-    if (!rows || rows.length === 0) { // Verifica se rows é indefinido ou vazio
-      console.log(`[${new Date().toISOString()}] - Usuário de ID ${id} não encontrado`);
-      const err = new Error("Usuário não encontrado");
-      err.status = 404; // Define o status do erro como 'Not Found'
+    const usuario = await buscarUsuarioPorIdLinkedIn(idLinkedIn);
+    if (!usuario) { // Verifica se o usuário não foi encontrado
+      console.log(`[${new Date().toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" })}] - Usuário de idLinkedIn ${idLinkedIn} não encontrado`);
+      const err = new Error(`Usuário de idLinkedIn ${idLinkedIn} não encontrado`);
+      err.status = 404;
       throw err;
     } else {
-      console.log(`[${new Date().toISOString()}] - Usuário de ID ${id} encontrado`);
-      console.log(rows)
+      console.log(`[${new Date().toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" })}] - Usuário de idLinkedIn ${idLinkedIn} encontrado`);
       const usuarioFormatado = {
-        nome: rows.nome || null,
-        sobrenome: rows.sobrenome || null,
-        idade: rows.idade || null,
+        idLinkedIn: idLinkedIn,
+        nome: usuario.nome || null,
+        sobrenome: usuario.sobrenome || null,
+        foto: usuario.foto || null,
+        dataNascimento: usuario.dataNascimento || null,
+        cpf: usuario.cpf || null,
+        tipoConta: usuario.tipoConta || null,
         endereco: {
-          logradouro: rows.logradouro || null,
-          municipio: rows.municipio || null,
-          estado: rows.estado || null,
-          pais: rows.pais || null
+          logradouro: usuario.logradouro || null,
+          numero: usuario.numeroEndereco || null,
+          complemento: usuario.complementoEndereco || null,
+          estado: usuario.estado || null,
+          pais: usuario.pais || null,
+          cep: usuario.cep || null
+        },
+        telefone: {
+          tipo: usuario.dddFixo && usuario.numeroFixo ? 'fixo' : usuario.dddCelular && usuario.numeroCelular ? 'celular' : null,
+          ddd: usuario.dddFixo || usuario.dddCelular || null,
+          numero: usuario.numeroFixo || usuario.numeroCelular || null
         }
       };
       return usuarioFormatado;
     }
   } catch (err) {
-    console.error(`[${new Date().toISOString()}] - Erro ao consultar usuário de ID ${id}: ${err.message}`);
+    console.error(`[${new Date().toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" })}] - Erro ao consultar usuário de idLinkedIn ${idLinkedIn}: ${err.message}`);
     throw err;
   }
 };
 
-const removerUsuario = async (id) => {
+const removerUsuario = async (idLinkedIn) => {
   try {
-    console.log(`[${new Date().toISOString()}] - Iniciando remoção de usuário com ID ${id}`);
-    const resultadoConsulta = await consultarUsuarioPorId(id);
-    if (resultadoConsulta === "Usuário não encontrado") {
-      console.log(`[${new Date().toISOString()}] - Usuário não encontrado`);
-      const err = new Error("Usuário não encontrado");
-      err.status = 404; // Define o status do erro como 'Not Found'
+    console.log(`[${new Date().toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" })}] - Iniciando remoção de usuário com ID ${idLinkedIn}`);
+    const usuario = await buscarUsuarioPorIdLinkedIn(idLinkedIn);
+    if (!usuario) { // Verifica se o usuário não foi encontrado
+      console.log(`[${new Date().toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" })}] - Usuário de idLinkedIn ${idLinkedIn} não encontrado`);
+      const err = new Error(`Usuário de idLinkedIn ${idLinkedIn} não encontrado`);
+      err.status = 404;
       throw err;
     } else {
-      const sql = "DELETE FROM `usuario` WHERE `id` = ?";
-      const resultadoRemocao = await query(sql, [id]);
-      console.log(`[${new Date().toISOString()}] - Usuário removido com sucesso!`);
+      const resultadoRemocao = await removerUsuarioPorIdLinkedIn(idLinkedIn);
+      console.log(`[${new Date().toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" })}] - Usuário removido com sucesso!`);
       return resultadoRemocao;
     }
   } catch (err) {
-    console.error(`[${new Date().toISOString()}] - Erro ao remover usuário: ${err.message}`);
+    console.error(`[${new Date().toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" })}] - Erro ao remover usuário: ${err.message}`);
     throw err;
   }
 };
 
-const atualizarUsuario = async (id, usuario) => {
+
+const atualizarUsuario = async (idLinkedIn, usuario) => {
+
+  const { endereco, telefone } = usuario;
+
   try {
-    const resultadoConsulta = await consultarUsuarioPorId(id);
-    if (resultadoConsulta === "Usuário não encontrado") {
-      console.log(`[${new Date().toISOString()}] - Usuário não encontrado`);
-      const err = new Error("Usuário não encontrado");
-      err.status = 404; // Define o status do erro como 'Not Found'
+    // Inicia uma transação
+    await query('START TRANSACTION');
+
+    // Verifica se o usuário existe
+    const usuarioBusca = await buscarUsuarioPorIdLinkedIn(idLinkedIn);
+    if (!usuarioBusca) { // Verifica se o usuário não foi encontrado
+      console.log(`[${new Date().toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" })}] - Usuário de idLinkedIn ${idLinkedIn} não encontrado`);
+      const err = new Error(`Usuário de idLinkedIn ${idLinkedIn} não encontrado`);
+      err.status = 404;
       throw err;
-    } else {
-      const { nome, sobrenome, idade } = usuario;
-      const { logradouro, municipio, estado, pais } = usuario.endereco;
-      const sql =
-        "UPDATE usuario SET nome = ?, sobrenome = ?, idade = ?, logradouro = ?, municipio = ?, estado = ?, pais = ? WHERE id = ?";
-      const resultadoAtualizacao = await query(sql, [
-        nome,
-        sobrenome,
-        idade,
-        logradouro,
-        municipio,
-        estado,
-        pais,
-        id,
-      ]);
-      console.log(`[${new Date().toISOString()}] - Usuário atualizado com sucesso!`);
-      return resultadoAtualizacao;
     }
-  } catch (err) {
-    console.error(`[${new Date().toISOString()}] - Erro ao atualizar usuário: ${err.message}`);
+
+    // Verifica se o CEP já existe na tabela "endereco"
+    const enderecoExistente = await verificarEnderecoExistente(endereco.cep);
+    let enderecoCEP;
+
+    if (enderecoExistente) {
+      // Caso já exista, utiliza o ID do endereço existente
+      enderecoCEP = enderecoExistente.cep;
+    } else {
+      // Caso não exista, insere um novo endereço e utiliza o CEP gerado
+      const enderecoInserido = await inserirEndereco(endereco);
+      enderecoCEP = enderecoInserido.cep;
+    }
+
+    let dddFixo = null, numeroFixo = null, dddCelular = null, numeroCelular = null;
+    if (telefone) {
+      const { tipo, ddd, numero } = telefone;
+      if (tipo === 'fixo') {
+        dddFixo = ddd;
+        numeroFixo = numero;
+      } else if (tipo === 'celular') {
+        dddCelular = ddd;
+        numeroCelular = numero;
+      }
+    }
+
+    // Atualiza o usuário
+    await atualizarUsuarioPorIdLinkedIn(idLinkedIn, usuario, enderecoCEP, dddFixo, numeroFixo, dddCelular, numeroCelular);
+
+    // Finaliza a transação
+    await query('COMMIT');
+
+    console.log(`[${new Date().toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" })}] - Usuário atualizado com sucesso!`);
+    return true;
+
+  } catch (error) {
+    // Desfaz a transação em caso de erro
+    await query('ROLLBACK');
+    console.error(`[${new Date().toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" })}] - Erro ao atualizar usuário: ${error.message || error}`);
+    const err = new Error(`Erro ao atualizar usuário: ${error.message || error}`);
     throw err;
   }
 };
