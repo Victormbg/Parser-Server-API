@@ -9,6 +9,353 @@
     "https"
   ],
   "paths": {
+    "/login": {
+      "post": {
+        "tags": [
+          "Login"
+        ],
+        "description": "Criar Login",
+        "summary": "Criar Login",
+        "operationId": "post-login",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "RequestBody",
+            "schema": {
+              "$ref": "#/definitions/LoginRequest"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-Parse-Application-Id",
+            "description": "Application-Id do BackEnd",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "header",
+            "name": "X-Parse-REST-API-Key",
+            "description": "REST-API-Key do BackEnd",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "Ok",
+            "schema": {
+              "$ref": "#/definitions/SucessoResponse"
+            },
+            "examples": {
+              "application/json": {
+                "status": "Sucesso",
+                "mensagem": "Login criado com sucesso"
+              }
+            }
+          },
+          "400": {
+            "description": "Requisicao invalida.",
+            "schema": {
+              "$ref": "#/definitions/ErroResponse"
+            },
+            "examples": {
+              "application/json": {
+                "status": "Erro",
+                "mensagem": "Alguma mensagem de erro"
+              }
+            }
+          },
+          "401": {
+            "description": "Acesso negado devido a X-Parse-REST-API-Key ou X-Parse-REST-API-Key invalida.",
+            "schema": {
+              "$ref": "#/definitions/Erro401Response"
+            }
+          },
+          "404": {
+            "description": "Pagina não encontrado.",
+            "schema": {
+              "$ref": "#/definitions/Erro404Response"
+            }
+          },
+          "409": {
+            "description": "O idLinkedIn já existe na tabela login.",
+            "schema": {
+              "$ref": "#/definitions/Erro409Response"
+            }
+          },
+          "500": {
+            "description": "Erro interno no servidor.",
+            "schema": {
+              "$ref": "#/definitions/ErroResponse"
+            },
+            "examples": {
+              "application/json": {
+                "status": "Erro",
+                "mensagem": "Alguma mensagem de erro"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/login/{idLinkedIn}": {
+      "get": {
+        "tags": [
+          "Login"
+        ],
+        "summary": "Consultar Login por idLinkedIn",
+        "description": "Consultar Login por idLinkedIn",
+        "operationId": "get-login-idLinkedIn",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "idLinkedIn",
+            "description": "idLinkedIn Do Usuario",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "header",
+            "name": "X-Parse-Application-Id",
+            "description": "Application-Id do BackEnd",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "header",
+            "name": "X-Parse-REST-API-Key",
+            "description": "REST-API-Key do BackEnd",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "$ref": "#/definitions/LoginResponse"
+            }
+          },
+          "400": {
+            "description": "Requisicao invalida.",
+            "schema": {
+              "$ref": "#/definitions/ErroResponse"
+            },
+            "examples": {
+              "application/json": {
+                "status": "Erro",
+                "mensagem": "Alguma mensagem de erro"
+              }
+            }
+          },
+          "401": {
+            "description": "Acesso negado devido a X-Parse-REST-API-Key ou X-Parse-REST-API-Key invalida.",
+            "schema": {
+              "$ref": "#/definitions/Erro401Response"
+            }
+          },
+          "404": {
+            "description": "Pagina não encontrado.",
+            "schema": {
+              "$ref": "#/definitions/Erro404Response"
+            }
+          },
+          "500": {
+            "description": "Erro interno no servidor.",
+            "schema": {
+              "$ref": "#/definitions/ErroResponse"
+            },
+            "examples": {
+              "application/json": {
+                "status": "Erro",
+                "mensagem": "Alguma mensagem de erro"
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Login"
+        ],
+        "summary": "Alterar Login por idLinkedIn",
+        "description": "Alterar Login por idLinkedIn",
+        "operationId": "put-login",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "idLinkedIn",
+            "description": "idLinkedIn Do Usuario",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "RequestBody",
+            "schema": {
+              "$ref": "#/definitions/UsuarioRequest"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-Parse-Application-Id",
+            "description": "Application-Id do BackEnd",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "header",
+            "name": "X-Parse-REST-API-Key",
+            "description": "REST-API-Key do BackEnd",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "$ref": "#/definitions/SucessoResponse"
+            },
+            "examples": {
+              "application/json": {
+                "status": "Sucesso",
+                "mensagem": "Login Alterado com Sucesso"
+              }
+            }
+          },
+          "400": {
+            "description": "Requisicao invalida.",
+            "schema": {
+              "$ref": "#/definitions/ErroResponse"
+            },
+            "examples": {
+              "application/json": {
+                "status": "Erro",
+                "mensagem": "Alguma mensagem de erro"
+              }
+            }
+          },
+          "401": {
+            "description": "Acesso negado devido a X-Parse-REST-API-Key ou X-Parse-REST-API-Key invalida.",
+            "schema": {
+              "$ref": "#/definitions/Erro401Response"
+            }
+          },
+          "404": {
+            "description": "Pagina não encontrado.",
+            "schema": {
+              "$ref": "#/definitions/Erro404Response"
+            }
+          },
+          "500": {
+            "description": "Erro interno no servidor.",
+            "schema": {
+              "$ref": "#/definitions/ErroResponse"
+            },
+            "examples": {
+              "application/json": {
+                "status": "Erro",
+                "mensagem": "Alguma mensagem de erro"
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Login"
+        ],
+        "summary": "Deletar Login por idLinkedIn",
+        "description": "Deletar Login por idLinkedIn",
+        "operationId": "delete-login-idLinkedIn",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "idLinkedIn",
+            "description": "idLinkedIn Do Usuario",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "header",
+            "name": "X-Parse-Application-Id",
+            "description": "Application-Id do BackEnd",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "header",
+            "name": "X-Parse-REST-API-Key",
+            "description": "REST-API-Key do BackEnd",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "$ref": "#/definitions/SucessoResponse"
+            },
+            "examples": {
+              "application/json": {
+                "status": "Sucesso",
+                "mensagem": "Login Deletado com Sucesso"
+              }
+            }
+          },
+          "400": {
+            "description": "Requisicao invalida.",
+            "schema": {
+              "$ref": "#/definitions/ErroResponse"
+            },
+            "examples": {
+              "application/json": {
+                "status": "Erro",
+                "mensagem": "Alguma mensagem de erro"
+              }
+            }
+          },
+          "401": {
+            "description": "Acesso negado devido a X-Parse-REST-API-Key ou X-Parse-REST-API-Key invalida.",
+            "schema": {
+              "$ref": "#/definitions/Erro401Response"
+            }
+          },
+          "404": {
+            "description": "Pagina não encontrado.",
+            "schema": {
+              "$ref": "#/definitions/Erro404Response"
+            }
+          },
+          "500": {
+            "description": "Erro interno no servidor.",
+            "schema": {
+              "$ref": "#/definitions/ErroResponse"
+            },
+            "examples": {
+              "application/json": {
+                "status": "Erro",
+                "mensagem": "Alguma mensagem de erro"
+              }
+            }
+          }
+        }
+      }
+    },
     "/usuario": {
       "post": {
         "tags": [
@@ -454,8 +801,8 @@
         "tags": [
           "Empresa"
         ],
-        "description": "Criar Empresa",
-        "summary": "Criar Empresa",
+        "description": "Criar Empresa (NÃO FINALIZADO)",
+        "summary": "Criar Empresa (NÃO FINALIZADO)",
         "operationId": "post-empresa",
         "parameters": [
           {
@@ -539,7 +886,7 @@
           "Empresa"
         ],
         "summary": "Consultar Empresa (NAO FINALIZADO)",
-        "description": "Consultar Dados da Empresa",
+        "description": "Consultar Dados da Empresa (NÃO FINALIZADO)",
         "operationId": "get-empresa",
         "parameters": [
           {
@@ -632,8 +979,8 @@
         "tags": [
           "Empresa"
         ],
-        "summary": "Consultar Empresa por Id",
-        "description": "Consultar Dados da Empresa pelo ID",
+        "summary": "Consultar Empresa por Id (NÃO FINALIZADO)",
+        "description": "Consultar Dados da Empresa pelo ID (NÃO FINALIZADO)",
         "operationId": "get-empresa-id",
         "parameters": [
           {
@@ -710,8 +1057,8 @@
         "tags": [
           "Empresa"
         ],
-        "summary": "Alterar Empresa",
-        "description": "Alterar Dados do Empresa",
+        "summary": "Alterar Empresa (NÃO FINALIZADO)",
+        "description": "Alterar Dados do Empresa (NÃO FINALIZADO)",
         "operationId": "put-empresa",
         "parameters": [
           {
@@ -801,8 +1148,8 @@
         "tags": [
           "Empresa"
         ],
-        "summary": "Deletar Empresa por Id",
-        "description": "Deletar o Empresa pelo ID",
+        "summary": "Deletar Empresa por Id (NÃO FINALIZADO)",
+        "description": "Deletar o Empresa pelo ID (NÃO FINALIZADO)",
         "operationId": "delete-empresa-id",
         "parameters": [
           {
@@ -1247,6 +1594,63 @@
     }
   },
   "definitions": {
+    "LoginRequest": {
+      "type": "object",
+      "required": [
+        "idLinkedIn",
+        "nome",
+        "sobrenome",
+        "foto"
+      ],
+      "properties": {
+        "idLinkedIn": {
+          "type": "string",
+          "description": "idLinkedIn do Usuario"
+        },
+        "nome": {
+          "type": "string",
+          "description": "Nome do Usuario"
+        },
+        "sobrenome": {
+          "type": "string",
+          "description": "Sobrenome do Usuario"
+        },
+        "foto": {
+          "type": "string",
+          "description": "Foto do Usuario"
+        }
+      }
+    },
+    "LoginResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "description": "Campo para dizer o status for sucesso"
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "idLinkedIn": {
+              "type": "integer",
+              "description": "ID do Usuario no Banco de Dados"
+            },
+            "nome": {
+              "type": "string",
+              "description": "Nome do Usuario"
+            },
+            "sobrenome": {
+              "type": "string",
+              "description": "Nome do Usuario"
+            },
+            "foto": {
+              "type": "string",
+              "description": "Nome do Usuario"
+            }
+          }
+        }
+      }
+    },
     "UsuarioRequest": {
       "type": "object",
       "required": [
@@ -1463,6 +1867,21 @@
       "example": {
         "status": "Erro",
         "mensagem": "Página não Encontrada"
+      }
+    },
+    "Erro409Response": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "mensagem": {
+          "type": "string"
+        }
+      },
+      "example": {
+        "status": "Erro",
+        "mensagem": "O idLinkedIn já existe na tabela login."
       }
     }
   }
