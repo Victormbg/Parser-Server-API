@@ -11,6 +11,10 @@ RUN npm install -g parse-server mongodb-runner
 # Iniciar o MongoDB
 RUN mongodb-runner start
 
+# Instalar o Git
+RUN apt-get update && \
+    apt-get install -y git
+
 # Definir as variáveis de ambiente
 ENV APPLICATION_ID=TOMhAasW768J3xUcEmvCePlX9AwAzmdNtWmPABW6
 ENV CLIENT_KEY=PDSKFep7Ax9DUunMrQoxOECmdd1c4gINfhUzbkGj
