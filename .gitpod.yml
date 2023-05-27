@@ -4,4 +4,4 @@ image:
 tasks:
   - name: Run Parse Server
     init: cd cloud && npm install && cd ..
-    command: cd cloud && parse-server --appId $APPLICATION_ID --clientKey $CLIENT_KEY --masterKey $MASTER_KEY --databaseURI mongodb://localhost/test --allowClientClassCreation=false --allowExpiredAuthDataToken=false && cd ..
+    command: parse-server --appId $APPLICATION_ID --clientKey $CLIENT_KEY --masterKey $MASTER_KEY --databaseURI mongodb://localhost/test --allowClientClassCreation=false --allowExpiredAuthDataToken=false

@@ -1,7 +1,4 @@
-FROM node:latest
-
-# Instalar o CLI do Back4App
-# RUN curl https://raw.githubusercontent.com/back4app/parse-cli/back4app/installer.sh | /bin/bash
+FROM back4app/b4a_cli
 
 # Instalar o Parse Server e o MongoDB
 RUN npm install -g parse-server mongodb-runner
