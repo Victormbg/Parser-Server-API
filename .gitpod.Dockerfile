@@ -12,8 +12,8 @@ RUN ls -la
 # Limpar o cache de dependências existentes
 RUN npm cache clean --force
 
-# Instalar as dependências
-RUN npm install
+# Instalar as dependências com a opção --legacy-peer-deps
+RUN npm install --legacy-peer-deps
 
 # Instalar o Parse Server e o MongoDB
 RUN npm install -g parse-server mongodb-runner
