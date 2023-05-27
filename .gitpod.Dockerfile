@@ -1,9 +1,15 @@
-FROM back4app/b4a_cli
+FROM node:latest
 
-# Baixar e instalar o Node.js e npm
-RUN curl -o node.tar.gz https://nodejs.org/dist/v18.16.0/node-v18.16.0-linux-x64.tar.gz
-RUN tar -xzf node.tar.gz -C /usr/local --strip-components=1
-RUN rm node.tar.gz
+# Instala o curl
+RUN apt-get update && apt-get install -y curl
+
+# Baixa o script de instalação e executa
+RUN curl https://raw.githubusercontent.com/back4app/parse-cli/back4app/installer.sh --output installer.sh && \
+    chmod +x installer.sh && \
+    sudo ./installer.sh
+
+# Atualzar o NPM
+RUN npm install -g npm@latest
 
 # Instalar o Parse Server e o MongoDB
 RUN npm install -g parse-server mongodb-runner
