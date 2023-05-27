@@ -26,5 +26,4 @@ ENV APPLICATION_ID=TOMhAasW768J3xUcEmvCePlX9AwAzmdNtWmPABW6
 ENV CLIENT_KEY=PDSKFep7Ax9DUunMrQoxOECmdd1c4gINfhUzbkGj
 ENV MASTER_KEY=dBcRtZ6QJMxkMsbYcRuBZB9ziPCUY9pWelG75Ydm
 
-# Iniciar o Parse Server usando as variáveis de ambiente
-CMD parse-server --appId $APPLICATION_ID --clientKey $CLIENT_KEY --masterKey $MASTER_KEY --databaseURI mongodb://localhost/test
+CMD ["npm", "start"]

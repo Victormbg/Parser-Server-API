@@ -1,0 +1,7 @@
+image:
+  file: .gitpod.Dockerfile
+
+tasks:
+  - init: npm install
+  - command: parse-server --appId $APPLICATION_ID --clientKey $CLIENT_KEY --masterKey $MASTER_KEY --databaseURI mongodb://localhost/test
+    name: Run Parse Server
