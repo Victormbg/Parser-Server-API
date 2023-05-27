@@ -2,6 +2,6 @@ image:
   file: .gitpod.Dockerfile
 
 tasks:
-  - init: npm install
-  - command: parse-server --appId $APPLICATION_ID --clientKey $CLIENT_KEY --masterKey $MASTER_KEY --databaseURI mongodb://localhost/test
+  - init: cd cloud && npm install && cd ..
+  - command: cd cloud && parse-server --appId $APPLICATION_ID --clientKey $CLIENT_KEY --masterKey $MASTER_KEY --databaseURI mongodb://localhost/test && cd ..
     name: Run Parse Server
