@@ -6,6 +6,12 @@ RUN curl https://raw.githubusercontent.com/back4app/parse-cli/back4app/installer
 # Copiar o diretório "cloud" e o package.json
 COPY cloud/package.json ./
 
+# Listar o conteúdo do diretório copiado
+RUN ls -la
+
+# Limpar o cache de dependências existentes
+RUN npm cache clean --force
+
 # Instalar as dependências
 RUN npm install
 
