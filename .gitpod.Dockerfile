@@ -6,7 +6,7 @@ RUN apt-get update && apt-get install -y curl
 # Baixa a CLI do back4app
 RUN curl https://raw.githubusercontent.com/back4app/parse-cli/back4app/installer.sh --output installer.sh && \
     chmod +x installer.sh && \
-    ./installer.sh
+    bash installer.sh
 
 # Atualzar o NPM
 RUN npm install -g npm@latest
