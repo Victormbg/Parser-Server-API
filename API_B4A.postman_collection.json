@@ -1,10 +1,149 @@
 {
 	"info": {
-		"_postman_id": "d7a31381-f904-4664-85b5-a8b248c91c96",
+		"_postman_id": "abe87aa0-5ec4-4b78-83f0-f4d78b930a9d",
 		"name": "API_B4A",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26926866"
 	},
 	"item": [
+		{
+			"name": "Login",
+			"item": [
+				{
+					"name": "Consultar Login por idLinkedIn",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Parse-Application-Id",
+								"value": "{{X-Parse-Application-Id}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Parse-REST-API-Key",
+								"value": "{{X-Parse-REST-API-Key}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/login/24",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"login",
+								"24"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar Login por idLinkedIn",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "X-Parse-Application-Id",
+								"value": "{{X-Parse-Application-Id}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Parse-REST-API-Key",
+								"value": "{{X-Parse-REST-API-Key}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/login/24",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"login",
+								"24"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Criar Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Parse-Application-Id",
+								"value": "{{X-Parse-Application-Id}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Parse-REST-API-Key",
+								"value": "{{X-Parse-REST-API-Key}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"idLinkedIn\": \"string\",\r\n  \"nome\": \"string\",\r\n  \"sobrenome\": \"string\",\r\n  \"foto\": \"string\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/login",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Alterar Login por idLinkedIn",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "X-Parse-Application-Id",
+								"value": "{{X-Parse-Application-Id}}",
+								"type": "text"
+							},
+							{
+								"key": "X-Parse-REST-API-Key",
+								"value": "{{X-Parse-REST-API-Key}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"idLinkedIn\": \"string\",\r\n  \"nome\": \"string\",\r\n  \"sobrenome\": \"string\",\r\n  \"foto\": \"string\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/login/{idLinkedIn}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"login",
+								"{idLinkedIn}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
 		{
 			"name": "Usuario",
 			"item": [

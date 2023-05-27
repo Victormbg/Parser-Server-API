@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "API vagasTecnologiainformacaobr",
+    "title": "TI_JOBS",
     "version": "v1"
   },
   "host": "parseapi.back4app.com",
