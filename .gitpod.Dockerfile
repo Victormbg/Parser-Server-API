@@ -1,8 +1,9 @@
 FROM back4app/b4a_cli
 
-# Instalação do Node.js e npm
-RUN curl -fsSL https://deb.nodesource.com/setup_14.x | bash -
-RUN apt-get install -y nodejs
+# Baixar e instalar o Node.js e npm
+RUN curl -o node.tar.gz https://nodejs.org/dist/v18.16.0/node-v18.16.0-linux-x64.tar.gz
+RUN tar -xzf node.tar.gz -C /usr/local --strip-components=1
+RUN rm node.tar.gz
 
 # Instalar o Parse Server e o MongoDB
 RUN npm install -g parse-server mongodb-runner
