@@ -1,5 +1,11 @@
 # Removendo o arquivo de env
 cloud/.env
+# Removendo o node_modules do cloud
+cloud/node_modules
+# Removendo o package-lock do cloud
+cloud/package-lock.json
+# Removendo o logs do cloud
+cloud/logs
 # Removendo o arquivo de ACESSOS
 # ACESSOS.md
 # Removendo o arquivo de postman_environment

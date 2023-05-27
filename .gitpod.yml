@@ -2,6 +2,8 @@ image:
   file: .gitpod.Dockerfile
 
 tasks:
-  - init: cd cloud && npm install && cd ..
-  - command: cd cloud && parse-server --appId $APPLICATION_ID --clientKey $CLIENT_KEY --masterKey $MASTER_KEY --databaseURI mongodb://localhost/test && cd ..
-    name: Run Parse Server
+  - before: curl https://raw.githubusercontent.com/back4app/parse-cli/back4app/installer.sh | /bin/bash
+    init: b4a version
+  - name: Run Parse Server
+    init: cd cloud && npm install && cd ..
+    command: cd cloud && parse-server --appId $APPLICATION_ID --clientKey $CLIENT_KEY --masterKey $MASTER_KEY --databaseURI mongodb://localhost/test --allowClientClassCreation=false --allowExpiredAuthDataToken=false && cd ..
