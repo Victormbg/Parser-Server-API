@@ -6,6 +6,8 @@ cloud/node_modules
 cloud/package-lock.json
 # Removendo o logs do cloud
 cloud/logs
+# Removendo o logs
+logs
 # Removendo o arquivo de ACESSOS
 # ACESSOS.md
 # Removendo o arquivo de postman_environment
